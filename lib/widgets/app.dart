@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './book/books.dart';
+import 'book/book_list.dart';
 
 class App extends StatelessWidget {
   @override
@@ -8,7 +8,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('My Entertainment')),
-        body: Books(),
+        body: BookList(),
       ),
     );
   }
