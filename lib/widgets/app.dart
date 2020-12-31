@@ -6,9 +6,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(title: Text('My Entertainment')),
-      body: Books(),
-    ));
+      home: Scaffold(
+        appBar: AppBar(title: Text('My Entertainment')),
+        body: Books(),
+      ),
+    );
   }
 }
