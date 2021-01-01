@@ -5,7 +5,7 @@ class Book {
     this.title,
     this.basedOnTitle,
     this.publicationYear,
-    this.isRead,
+    this.readingState,
   });
 
   final int isbn;
@@ -13,5 +13,7 @@ class Book {
   final String title;
   final String basedOnTitle;
   final int publicationYear;
-  final bool isRead;
+  final ReadingState readingState;
 }
+
+enum ReadingState { wantToRead, isReading, read }

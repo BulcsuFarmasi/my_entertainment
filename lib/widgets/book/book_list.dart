@@ -6,17 +6,20 @@ import '../../models/book.dart';
 class BookList extends StatelessWidget {
   final List<Book> books = [
     Book(
-        title: 'A tó úrnője',
-        basedOnTitle: 'Pani Jeziora',
-        isbn: 9789634069294,
-        publicationYear: 1999,
-        author: 'Andrzej Sapkowski'),
+      title: 'A tó úrnője',
+      basedOnTitle: 'Pani Jeziora',
+      isbn: 9789634069294,
+      publicationYear: 1999,
+      author: 'Andrzej Sapkowski',
+      readingState: ReadingState.isReading,
+    ),
     Book(
       title: 'Mi vagyunk a medvék',
       basedOnTitle: 'Björnstad',
       author: 'Fredrik Backman',
       publicationYear: 2016,
       isbn: 9789633245446,
+      readingState: ReadingState.wantToRead,
     ),
   ];
 
