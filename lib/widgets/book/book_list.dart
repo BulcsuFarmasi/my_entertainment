@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'book_view.dart';
 import '../../models/book.dart';
+import '../../models/reading.dart';
 
 class BookList extends StatelessWidget {
   final List<Book> books = [
@@ -11,7 +12,7 @@ class BookList extends StatelessWidget {
       isbn: 9789634069294,
       publicationYear: 1999,
       author: 'Andrzej Sapkowski',
-      readingState: ReadingState.isReading,
+      reading: Reading(ReadingState.isReading, currentPage: 70),
     ),
     Book(
       title: 'Mi vagyunk a medvék',
@@ -19,7 +20,7 @@ class BookList extends StatelessWidget {
       author: 'Fredrik Backman',
       publicationYear: 2016,
       isbn: 9789633245446,
-      readingState: ReadingState.wantToRead,
+      reading: Reading(ReadingState.wantToRead),
     ),
   ];
 

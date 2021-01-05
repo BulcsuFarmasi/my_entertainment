@@ -1,3 +1,5 @@
+import './reading.dart';
+
 class Book {
   Book({
     this.isbn,
@@ -5,7 +7,7 @@ class Book {
     this.title,
     this.basedOnTitle,
     this.publicationYear,
-    this.readingState,
+    this.reading,
   });
 
   final int isbn;
@@ -13,7 +15,7 @@ class Book {
   final String title;
   final String basedOnTitle;
   final int publicationYear;
-  final ReadingState readingState;
+  final Reading reading;
 }
 
-enum ReadingState { wantToRead, isReading, read }
+
