@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'book_view.dart';
+import 'book_preview.dart';
 import '../../models/book.dart';
 
 class BookList extends StatelessWidget {
@@ -9,6 +9,6 @@ class BookList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: books.map((Book book) => BookView(book)).toList());
+    return Column(children: books.map((Book book) => BookPreview(book)).toList());
   }
 }
