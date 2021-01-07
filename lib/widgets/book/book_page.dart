@@ -48,6 +48,10 @@ class BookPage extends StatelessWidget {
       child: Column(
         children: [
           Text(
+            'Könyvek',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          Text(
             'Jelenleg olvasott könyvek',
             style: Theme.of(context).textTheme.headline6,
           ),
