@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_entertainment/widgets/book/book_list.dart';
+import 'package:my_entertainment/widgets/book/new_book.dart';
 
 import '../../models/book.dart';
 import '../../models/reading.dart';
@@ -61,6 +62,7 @@ class BookPage extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           BookList(bookGroups[ReadingState.read]),
+          NewBook(() {}),
         ],
       ),
     );
