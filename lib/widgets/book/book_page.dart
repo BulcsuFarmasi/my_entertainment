@@ -43,15 +43,26 @@ class BookPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Jelenleg olvasott könyvek'),
-        BookList(bookGroups[ReadingState.isReading]),
-        Text('El akarom olvasni'),
-        BookList(bookGroups[ReadingState.wantToRead]),
-        Text('Elolvasott könyvek'),
-        BookList(bookGroups[ReadingState.read]),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Text(
+            'Jelenleg olvasott könyvek',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          BookList(bookGroups[ReadingState.isReading]),
+          Text(
+            'El akarom olvasni',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          BookList(bookGroups[ReadingState.wantToRead]),
+          Text(
+            'Elolvasott könyvek',
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          BookList(bookGroups[ReadingState.read]),
+        ],
+      ),
     );
   }
 }

@@ -10,10 +10,6 @@ class BookView extends StatelessWidget {
     return Column(
       children: [
         Text(book.title),
-        Text(book.basedOnTitle),
-        Text(book.author),
-        Text(book.isbn.toString()),
-        Text(book.publicationYear.toString()),
         if (book.reading.currentPage != null) Text('Jelenlegi oldal: ${book.reading.currentPage}')
       ],
     );
