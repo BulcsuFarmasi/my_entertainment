@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/models/reading.dart';
+import 'package:intl/intl.dart';
+
+import '../../models/book.dart';
+import '../../models/reading.dart';
 
 class NewBook extends StatefulWidget {
   NewBook(this.addBook);
@@ -13,20 +16,41 @@ class NewBook extends StatefulWidget {
 }
 
 class _NewBookState extends State<NewBook> {
+  final Map<ReadingState, String> readingStateTranslations = {
+    ReadingState.wantToRead: Intl.message('El akarom olvasni'),
+    ReadingState.isReading: Intl.message('Éppen olvasom'),
+    ReadingState.read: Intl.message('Már elolvastam'),
+  };
+
+  Book newBook;
+
   @override
   Widget build(BuildContext context) {
+
+
     return Column(
       children: [
         TextField(
-          decoration: InputDecoration(labelText: 'Könyv címe'),
+          decoration: InputDecoration(labelText: Intl.message('Köny címe')),
+        ),
+        DropdownButton<ReadingState>(
+          value: ReadingState.wantToRead,
+          items: ReadingState.values.map((ReadingState readingState) {
+            return DropdownMenuItem(
+              value: readingState,
+              child: Text(readingStateTranslations[readingState]),
+            );
+          }).toList(growable: false),
+          onChanged: (_) {},
         ),
         TextField(
-          decoration: InputDecoration(labelText: 'Oldalszám'),
+          decoration: InputDecoration(
+              labelText: Intl.message('Melyik oldalon tartasz éppen?')),
           keyboardType: TextInputType.number,
         ),
         RaisedButton(
           onPressed: () {},
-          child: Text('Könyv hozzáadása'),
+          child: Text(Intl.message('Köny hozzáadása')),
           color: Theme.of(context).primaryColor,
         )
       ],
