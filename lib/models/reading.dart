@@ -4,4 +4,4 @@ class Reading {
   final int currentPage;
 }
 
-enum ReadingState { wantToRead, isReading, read }
+enum ReadingState { isReading, wantToRead, read }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:my_entertainment/widgets/book/book_group.dart';
 import 'package:my_entertainment/widgets/book/book_list.dart';
 import 'package:my_entertainment/widgets/book/new_book.dart';
 
@@ -48,24 +50,12 @@ class BookPage extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Könyvek',
+            Intl.message('Könyvek'),
             style: Theme.of(context).textTheme.headline6,
           ),
-          Text(
-            'Jelenleg olvasott könyvek',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          BookList(bookGroups[ReadingState.isReading]),
-          Text(
-            'El akarom olvasni',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          BookList(bookGroups[ReadingState.wantToRead]),
-          Text(
-            'Elolvasott könyvek',
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          BookList(bookGroups[ReadingState.read]),
+          ...ReadingState.values.map((ReadingState readingState)  {
+            return BookGroup(readingState: readingState, books: bookGroups[readingState],);
+          }),
           NewBook(() {}),
         ],
       ),

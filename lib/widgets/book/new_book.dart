@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/book.dart';
 import '../../models/reading.dart';
 
 class NewBook extends StatefulWidget {
@@ -22,7 +21,9 @@ class _NewBookState extends State<NewBook> {
     ReadingState.read: Intl.message('Már elolvastam'),
   };
 
-  Book newBook;
+  // void addBook() {
+  //   widget.addBook(newBook);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class _NewBookState extends State<NewBook> {
       children: [
         TextField(
           decoration: InputDecoration(labelText: Intl.message('Köny címe')),
+          onChanged: (String title) {},
         ),
         DropdownButton<ReadingState>(
           value: ReadingState.wantToRead,
