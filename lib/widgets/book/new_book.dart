@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_entertainment/models/book.dart';
 
+import '../../models/book.dart';
 import '../../models/reading.dart';
 
 class NewBook extends StatefulWidget {
@@ -21,38 +23,59 @@ class _NewBookState extends State<NewBook> {
     ReadingState.read: Intl.message('Már elolvastam'),
   };
 
-  // void addBook() {
-  //   widget.addBook(newBook);
-  // }
+  String title;
+  ReadingState readingState = ReadingState.wantToRead;
+  int currentPage;
+
+  void addBook() {
+    print('addBook');
+    Book newBook = createBook();
+    widget.addBook(newBook);
+  }
+
+  Book createBook() {
+    Reading reading = (readingState == ReadingState.isReading)
+        ? Reading(readingState, currentPage: currentPage)
+        : Reading(readingState);
+    return Book(title: title, reading: reading);
+  }
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
       children: [
         TextField(
           decoration: InputDecoration(labelText: Intl.message('Köny címe')),
-          onChanged: (String title) {},
+          onChanged: (String newTitle) => setState(() {
+            title = newTitle;
+          }),
         ),
         DropdownButton<ReadingState>(
-          value: ReadingState.wantToRead,
+          value: readingState,
           items: ReadingState.values.map((ReadingState readingState) {
             return DropdownMenuItem(
               value: readingState,
               child: Text(readingStateTranslations[readingState]),
             );
           }).toList(growable: false),
-          onChanged: (_) {},
+          onChanged: (ReadingState newReadingState) => setState(() {
+            readingState = newReadingState;
+          }),
         ),
-        TextField(
-          decoration: InputDecoration(
-              labelText: Intl.message('Melyik oldalon tartasz éppen?')),
-          keyboardType: TextInputType.number,
-        ),
+        if (readingState == ReadingState.isReading)
+          TextField(
+            decoration: InputDecoration(
+                labelText: Intl.message('Melyik oldalon tartasz éppen?')),
+            keyboardType: TextInputType.number,
+            onChanged: (String newCurrentPage) {
+              setState(() {
+                currentPage = int.parse(newCurrentPage);
+              });
+            },
+          ),
         RaisedButton(
-          onPressed: () {},
-          child: Text(Intl.message('Köny hozzáadása')),
+          onPressed: addBook,
+          child: Text(Intl.message('Könyv hozzáadása')),
           color: Theme.of(context).primaryColor,
         )
       ],

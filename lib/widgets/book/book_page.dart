@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_entertainment/widgets/book/book_group.dart';
-import 'package:my_entertainment/widgets/book/book_list.dart';
 import 'package:my_entertainment/widgets/book/new_book.dart';
 
 import '../../models/book.dart';
 import '../../models/reading.dart';
 
-class BookPage extends StatelessWidget {
+class BookPage extends StatefulWidget {
+  @override
+  State<BookPage> createState() => _BookPageState();
+}
+
+class _BookPageState extends State<BookPage> {
   final List<Book> books = [
     Book(
       title: 'A tó úrnője',
@@ -44,6 +48,14 @@ class BookPage extends StatelessWidget {
     return _bookGroups;
   }
 
+  void addBook(Book newBook) {
+    setState(() {
+      books.add(newBook);
+    });
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -56,7 +68,7 @@ class BookPage extends StatelessWidget {
           ...ReadingState.values.map((ReadingState readingState)  {
             return BookGroup(readingState: readingState, books: bookGroups[readingState],);
           }),
-          NewBook(() {}),
+          NewBook(addBook),
         ],
       ),
     );
