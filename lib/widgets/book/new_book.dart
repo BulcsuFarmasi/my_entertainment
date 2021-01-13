@@ -46,6 +46,10 @@ class _NewBookState extends State<NewBook> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Text(
+          Intl.message('Új könyv'),
+          style: Theme.of(context).textTheme.headline6,
+        ),
         TextField(
           decoration: InputDecoration(labelText: Intl.message('Köny címe')),
           onChanged: (String newTitle) => setState(() {
@@ -66,8 +70,7 @@ class _NewBookState extends State<NewBook> {
         ),
         if (readingState == ReadingState.isReading)
           TextField(
-            decoration: InputDecoration(
-                labelText: Intl.message('Melyik oldalon tartasz éppen?')),
+            decoration: InputDecoration(labelText: Intl.message('Melyik oldalon tartasz éppen?')),
             keyboardType: TextInputType.number,
             onChanged: (String newCurrentPage) {
               setState(() {
