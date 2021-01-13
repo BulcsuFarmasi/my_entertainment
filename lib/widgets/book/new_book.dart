@@ -28,7 +28,9 @@ class _NewBookState extends State<NewBook> {
   int currentPage;
 
   void addBook() {
-    print('addBook');
+    if (title.isEmpty) {
+      return;
+    }
     Book newBook = createBook();
     widget.addBook(newBook);
   }
