@@ -4,7 +4,7 @@ import 'book_preview.dart';
 import '../../models/book.dart';
 
 class BookList extends StatelessWidget {
-  BookList(this.books);
+  const BookList(this.books);
 
   final List<Book> books;
 

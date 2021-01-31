@@ -69,7 +69,7 @@ class _BookPageState extends State<BookPage> {
                 style: Theme.of(context).textTheme.headline6,
               ),
               ...ReadingState.values.map((ReadingState readingState) {
-                return BookGroup(
+                return  BookGroup(
                   readingState: readingState,
                   books: bookGroups[readingState],
                 );

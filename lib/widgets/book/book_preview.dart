@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../models/book.dart';
 
 class BookPreview extends StatelessWidget {
-  BookPreview(this.book);
+  const BookPreview(this.book);
 
   final Book book;
 
