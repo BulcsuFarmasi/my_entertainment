@@ -28,7 +28,7 @@ class _NewBookState extends State<NewBook> {
   int currentPage;
 
   void addBook() {
-    if (title.isEmpty) {
+    if (title == null || title.isEmpty) {
       return;
     }
     Book newBook = createBook();
@@ -44,46 +44,48 @@ class _NewBookState extends State<NewBook> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          Intl.message('Új könyv'),
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        TextField(
-          decoration: InputDecoration(labelText: Intl.message('Köny címe')),
-          onChanged: (String newTitle) => setState(() {
-            title = newTitle;
-          }),
-        ),
-        DropdownButton<ReadingState>(
-          value: readingState,
-          items: ReadingState.values.map((ReadingState readingState) {
-            return DropdownMenuItem(
-              value: readingState,
-              child: Text(readingStateTranslations[readingState]),
-            );
-          }).toList(growable: false),
-          onChanged: (ReadingState newReadingState) => setState(() {
-            readingState = newReadingState;
-          }),
-        ),
-        if (readingState == ReadingState.isReading)
-          TextField(
-            decoration: InputDecoration(labelText: Intl.message('Melyik oldalon tartasz éppen?')),
-            keyboardType: TextInputType.number,
-            onChanged: (String newCurrentPage) {
-              setState(() {
-                currentPage = int.parse(newCurrentPage);
-              });
-            },
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            Intl.message('Új könyv'),
+            style: Theme.of(context).textTheme.headline6,
           ),
-        RaisedButton(
-          onPressed: addBook,
-          child: Text(Intl.message('Könyv hozzáadása')),
-          color: Theme.of(context).primaryColor,
-        )
-      ],
-    );
+          TextField(
+            decoration: InputDecoration(labelText: Intl.message('Könyv címe')),
+            onChanged: (String newTitle) => setState(() {
+              title = newTitle;
+            }),
+          ),
+          DropdownButton<ReadingState>(
+            value: readingState,
+            items: ReadingState.values.map((ReadingState readingState) {
+              return DropdownMenuItem(
+                value: readingState,
+                child: Text(readingStateTranslations[readingState]),
+              );
+            }).toList(growable: false),
+            onChanged: (ReadingState newReadingState) => setState(() {
+              readingState = newReadingState;
+            }),
+          ),
+          if (readingState == ReadingState.isReading)
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('Melyik oldalon tartasz éppen?')),
+              keyboardType: TextInputType.number,
+              onChanged: (String newCurrentPage) {
+                setState(() {
+                  currentPage = int.parse(newCurrentPage);
+                });
+              },
+            ),
+          RaisedButton(
+            onPressed: addBook,
+            child: Text(Intl.message('Könyv hozzáadása')),
+            color: Theme.of(context).primaryColor,
+          )
+        ],
+      );
+
   }
 }

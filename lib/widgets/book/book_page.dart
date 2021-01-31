@@ -52,25 +52,35 @@ class _BookPageState extends State<BookPage> {
     setState(() {
       books.add(newBook);
     });
-
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Text(
-            Intl.message('Könyvek'),
-            style: Theme.of(context).textTheme.headline6,
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints contraints) {
+      print(contraints.maxHeight);
+      return SingleChildScrollView(
+        child: Container(
+          height: contraints.maxHeight,
+          child: Column(
+            children: [
+              Text(
+                Intl.message('Könyvek'),
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              ...ReadingState.values.map((ReadingState readingState) {
+                return BookGroup(
+                  readingState: readingState,
+                  books: bookGroups[readingState],
+                );
+              }),
+              Expanded(
+                child: NewBook(addBook),
+              ),
+            ],
           ),
-          ...ReadingState.values.map((ReadingState readingState)  {
-            return BookGroup(readingState: readingState, books: bookGroups[readingState],);
-          }),
-          NewBook(addBook),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }
