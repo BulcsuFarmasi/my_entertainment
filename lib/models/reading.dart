@@ -1,5 +1,9 @@
+import 'book.dart';
+
 class Reading {
-  Reading(this.state, {this.currentPage});
+  Reading(this.book, this.state, {this.currentPage});
+
+  final Book book;
   final ReadingState state;
   final int currentPage;
 }

@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
-import 'language.dart';
+
 import 'film.dart';
+import 'language.dart';
 
 class FilmRelease extends Film {
   DateTime localPremier;
@@ -12,7 +13,8 @@ class FilmRelease extends Film {
       String localTitle,
       @required String title,
       DateTime localPremier,
-      @required this.language}) :super(premier: premier, title: title) {
+      @required this.language})
+      : super(premier: premier, title: title) {
     this.localPremier ??= premier;
     this.localTitle ??= title;
   }

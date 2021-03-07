@@ -7,7 +7,6 @@ class Book {
     this.title,
     this.basedOnTitle,
     this.publicationYear,
-    this.reading,
   });
 
   final int isbn;
@@ -15,7 +14,4 @@ class Book {
   final String title;
   final String basedOnTitle;
   final int publicationYear;
-  final Reading reading;
 }
-
-

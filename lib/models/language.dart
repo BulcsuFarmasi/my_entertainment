@@ -6,5 +6,5 @@ class Language {
   // ie de-DE for German spoken in Germany
   final String code;
 
-  Language({this.endonym, this.code});
+  Language({@required this.endonym, @required this.code});
 }
