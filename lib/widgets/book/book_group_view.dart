@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import './book_list.dart';
-import '../../models/book.dart';
+import '../../models/book_group.dart';
 import '../../models/reading.dart';
 
-class BookGroup extends StatelessWidget {
-  BookGroup({this.readingState, this.books});
+class BookGroupView extends StatelessWidget {
+  BookGroupView({this.readingState, this.bookGroup});
 
   final ReadingState readingState;
-  final List<Book> books;
+  final BookGroup bookGroup;
   final Map<ReadingState, String> readingStateTranslations = {
     ReadingState.wantToRead: Intl.message('El akarom olvasni'),
     ReadingState.isReading: Intl.message('Jelenleg olvasott könyvek'),
@@ -29,7 +29,7 @@ class BookGroup extends StatelessWidget {
               Intl.message(readingStateTranslations[readingState]),
               style: Theme.of(context).textTheme.headline6,
             ),
-            BookList(books),
+            BookList(bookGroup),
           ],
         ),
       ),

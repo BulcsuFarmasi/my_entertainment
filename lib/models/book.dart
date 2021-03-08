@@ -1,5 +1,3 @@
-import './reading.dart';
-
 class Book {
   Book({
     this.isbn,

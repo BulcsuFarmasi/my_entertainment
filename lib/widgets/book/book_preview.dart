@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../models/book.dart';
+import '../../models/reading.dart';
 
 class BookPreview extends StatelessWidget {
-  const BookPreview(this.book);
+  const BookPreview(this.book, this.reading);
 
   final Book book;
+  final Reading reading;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class BookPreview extends StatelessWidget {
       child: Column(
         children: [
           Text(book.title),
-          if (book.reading.currentPage != null) Text('Jelenlegi oldal: ${book.reading.currentPage}')
+          if (reading.currentPage != null) Text('Jelenlegi oldal: ${reading.currentPage}')
         ],
       ),
     );
