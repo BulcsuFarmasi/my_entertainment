@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 abstract class Series {
   final String title;
 
@@ -7,7 +5,7 @@ abstract class Series {
   final DateTime premier;
 
   // The date when the series aired its last episode
-  final DateTime finale;
+  final DateTime? finale;
 
-  Series({@required this.title, @required this.premier, this.finale});
+  Series({required this.title, required this.premier, this.finale});
 }

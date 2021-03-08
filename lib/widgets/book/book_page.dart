@@ -14,8 +14,8 @@ class BookPage extends StatefulWidget {
 }
 
 class _BookPageState extends State<BookPage> {
-  List<Book> books;
-  List<Reading> readings;
+  late List<Book> books;
+  late List<Reading> readings;
 
   @override
   void initState() {
@@ -56,9 +56,8 @@ class _BookPageState extends State<BookPage> {
 
     readings.forEach((Reading reading) {
       _bookGroupsByReadingState[reading.state] ??= BookGroup(books: [], readings: []);
-      _bookGroupsByReadingState[reading.state].readings.add(reading);
-      _bookGroupsByReadingState[reading.state].books.add(reading.book);
-
+      _bookGroupsByReadingState[reading.state]!.readings.add(reading);
+      _bookGroupsByReadingState[reading.state]!.books.add(reading.book);
     });
 
     return _bookGroupsByReadingState;
@@ -87,7 +86,7 @@ class _BookPageState extends State<BookPage> {
               ...ReadingState.values.map((ReadingState readingState) {
                 return BookGroupView(
                   readingState: readingState,
-                  bookGroup: bookGroupsByReadingState[readingState],
+                  bookGroup: bookGroupsByReadingState[readingState]!,
                 );
               }),
               // Expanded(

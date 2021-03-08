@@ -1,10 +1,10 @@
 class Book {
   Book({
-    this.isbn,
-    this.author,
-    this.title,
-    this.basedOnTitle,
-    this.publicationYear,
+    required this.isbn,
+    required this.author,
+    required this.title,
+    required this.basedOnTitle,
+    required this.publicationYear,
   });
 
   final int isbn;

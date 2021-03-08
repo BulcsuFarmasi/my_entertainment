@@ -6,7 +6,7 @@ import '../../models/book_group.dart';
 import '../../models/reading.dart';
 
 class BookGroupView extends StatelessWidget {
-  BookGroupView({this.readingState, this.bookGroup});
+  BookGroupView({required this.readingState, required this.bookGroup});
 
   final ReadingState readingState;
   final BookGroup bookGroup;
@@ -26,7 +26,7 @@ class BookGroupView extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              Intl.message(readingStateTranslations[readingState]),
+              Intl.message(readingStateTranslations[readingState]!),
               style: Theme.of(context).textTheme.headline6,
             ),
             BookList(bookGroup),

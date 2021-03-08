@@ -5,7 +5,7 @@ class Reading {
 
   final Book book;
   final ReadingState state;
-  final int currentPage;
+  final int? currentPage;
 }
 
 enum ReadingState { isReading, wantToRead, read }

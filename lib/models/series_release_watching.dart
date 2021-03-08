@@ -6,5 +6,5 @@ class SeriesReleaseWatching {
   final Episode currentEpisode;
   final bool isCompleted;
 
-  SeriesReleaseWatching(this.seriesRelease, this.currentEpisode, this.isCompleted);
+  SeriesReleaseWatching({required this.seriesRelease, required this.currentEpisode, required this.isCompleted});
 }

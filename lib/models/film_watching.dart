@@ -1,12 +1,11 @@
-import 'package:meta/meta.dart';
 import 'film_release.dart';
 
 class FilmWatching {
   // The releases watched from a given film;
   final Map<FilmRelease, bool> releasesWatched;
-  FilmWatchingState filmWatchingState = FilmWatchingState.plannedToWatch;
+  FilmWatchingState filmWatchingState;
 
-  FilmWatching({@required this.releasesWatched, this.filmWatchingState});
+  FilmWatching({required this.releasesWatched, this.filmWatchingState = FilmWatchingState.plannedToWatch});
 }
 
-enum FilmWatchingState { plannedToWatch, allRealeasesWatched, partOfReleasesWtached }
+enum FilmWatchingState { plannedToWatch, allRealeasesWatched, partOfReleasesWatched }

@@ -14,10 +14,7 @@ class BookPreview extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 5),
       child: Column(
-        children: [
-          Text(book.title),
-          if (reading.currentPage != null) Text('Jelenlegi oldal: ${reading.currentPage}')
-        ],
+        children: [Text(book.title), if (reading.currentPage != null) Text('Jelenlegi oldal: ${reading.currentPage}')],
       ),
     );
   }
