@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_entertainment/models/book_group.dart';
-import 'package:my_entertainment/widgets/book/book_group_view.dart';
-// import 'package:my_entertainment/widgets/book/new_book.dart';
 
 import '../../models/book.dart';
 import '../../models/book_group.dart';
 import '../../models/reading.dart';
+import 'book_group_view.dart';
+import 'new_book.dart';
 
 class BookPage extends StatefulWidget {
   @override
@@ -63,9 +62,10 @@ class _BookPageState extends State<BookPage> {
     return _bookGroupsByReadingState;
   }
 
-  void addBook(Book newBook) {
+  void addBook(Book book, Reading reading) {
     setState(() {
-      books.add(newBook);
+      books.add(book);
+      readings.add(reading);
     });
   }
 
@@ -89,9 +89,9 @@ class _BookPageState extends State<BookPage> {
                   bookGroup: bookGroupsByReadingState[readingState]!,
                 );
               }),
-              // Expanded(
-              //   child: NewBook(addBook),
-              // ),
+              Expanded(
+                child: NewBook(addBook),
+              ),
             ],
           ),
         ),
