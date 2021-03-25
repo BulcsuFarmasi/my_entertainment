@@ -6,16 +6,20 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-        textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(fontSize: 18),
+        theme: ThemeData(
+          primarySwatch: Colors.amber,
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(fontSize: 18),
+              ),
+        ),
+        home: Navigator(
+          pages: [
+            MaterialPage(
+              child: BookPage(),
+              key: ValueKey('BookPage'),
             ),
-      ),
-      home: Scaffold(
-        appBar: AppBar(title: Text('My Entertainment')),
-        body: BookPage(),
-      ),
-    );
+          ],
+          onPopPage: (Route route, result) => route.didPop(result),
+        ));
   }
 }
