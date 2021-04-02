@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_entertainment/models/book_group.dart';
 
 import 'book_preview.dart';
-import '../../models/reading.dart';
+import '../../../models/reading.dart';
 
 class BookList extends StatelessWidget {
   const BookList(this.bookGroup);

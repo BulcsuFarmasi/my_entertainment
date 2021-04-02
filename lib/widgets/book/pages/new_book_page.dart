@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_entertainment/models/book.dart';
 
-import '../../models/book.dart';
-import '../../models/reading.dart';
+import '../../../models/book.dart';
+import '../../../models/reading.dart';
 
 class NewBook extends StatefulWidget {
   NewBook(this.addBook);

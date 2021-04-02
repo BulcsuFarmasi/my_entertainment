@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../models/book.dart';
-import '../../models/reading.dart';
+import '../../../models/book.dart';
+import '../../../models/reading.dart';
 
 class BookPreview extends StatelessWidget {
   const BookPreview(this.book, this.reading);

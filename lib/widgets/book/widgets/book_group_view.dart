@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import './book_list.dart';
-import '../../models/book_group.dart';
-import '../../models/reading.dart';
+import 'book_list.dart';
+import '../../../models/book_group.dart';
+import '../../../models/reading.dart';
 
 class BookGroupView extends StatelessWidget {
   BookGroupView({required this.readingState, required this.bookGroup});
