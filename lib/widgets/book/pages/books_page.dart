@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../models/book.dart';
 import '../../../models/book_group.dart';
 import '../../../models/reading.dart';
-import '../widgets/book_group_view.dart';
+import '../widgets/book_group_preview.dart';
 import 'new_book_page.dart';
 
 class BookPage extends StatefulWidget {
