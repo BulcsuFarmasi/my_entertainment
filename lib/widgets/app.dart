@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/routes/book/book_route_delegate.dart';
+import 'package:my_entertainment/routes/book/book_route_information_parser.dart';
 
-import 'book/pages/books_page.dart';
 
 class App extends StatelessWidget {
+  final BookRouteInformationParser bookRouteInformationParser = BookRouteInformationParser();
+  final BookRouteDelegate bookRouteDelegate = BookRouteDelegate();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.amber,
-          textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(fontSize: 18),
-              ),
-        ),
-        home: Navigator(
-          pages: [
-            MaterialPage(
-              child: BookPage(),
-              key: ValueKey('BookPage'),
-            ),
-          ],
-          onPopPage: (Route route, result) => route.didPop(result),
-        ));
+    return MaterialApp.router(
+      routeInformationParser: bookRouteInformationParser, routerDelegate: bookRouteDelegate, theme: ThemeData(
+      primarySwatch: Colors.amber,
+      textTheme: ThemeData
+          .light()
+          .textTheme
+          .copyWith(
+        headline6: TextStyle(fontSize: 18),
+      ),
+    ),);
   }
 }

@@ -5,14 +5,14 @@ import 'package:my_entertainment/models/reading.dart';
 
 class BookGroupPage extends StatelessWidget {
 
-  BookGroupPage({required this.bookGroup, required this.reading});
+  BookGroupPage(this.bookGroup, this.readingState);
 
   final BookGroup bookGroup;
-  final Reading reading;
+  final ReadingState readingState;
 
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Text(readingState.toString());
   }
 }

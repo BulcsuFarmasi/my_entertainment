@@ -5,8 +5,8 @@ import 'book_list.dart';
 import '../../../models/book_group.dart';
 import '../../../models/reading.dart';
 
-class BookGroupView extends StatelessWidget {
-  BookGroupView({required this.readingState, required this.bookGroup});
+class BookGroupPreview extends StatelessWidget {
+  BookGroupPreview({required this.readingState, required this.bookGroup});
 
   final ReadingState readingState;
   final BookGroup bookGroup;
