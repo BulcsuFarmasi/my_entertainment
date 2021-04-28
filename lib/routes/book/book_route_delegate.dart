@@ -73,6 +73,11 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
     notifyListeners();
   }
 
+  void selectReadingState(ReadingState readingState) {
+    bookState.selectReadingState(readingState);
+    notifyListeners();
+  }
+
 
 
   @override
@@ -80,7 +85,7 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
     return Navigator(
       key: navigatorKey,
       pages: [
-        MaterialPage(key: ValueKey('BooksPage'), child: BooksPage(bookState.bookGroupsByReadingState, setAdding)),
+        MaterialPage(key: ValueKey('BooksPage'), child: BooksPage(bookState.bookGroupsByReadingState, setAdding, selectReadingState)),
         if (bookState.selectedReadingState != null)
           MaterialPage(
               key: ValueKey(bookState.selectedReadingState),

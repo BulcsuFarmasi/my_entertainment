@@ -8,8 +8,9 @@ import '../widgets/book_group_preview.dart';
 class BooksPage extends StatelessWidget {
   final Map<ReadingState, BookGroup> bookGroupsByReadingState;
   final Function addBook;
+  final Function selectReadingState;
 
-  BooksPage(this.bookGroupsByReadingState, this.addBook);
+  BooksPage(this.bookGroupsByReadingState, this.addBook, this.selectReadingState);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class BooksPage extends StatelessWidget {
                   return BookGroupPreview(
                     readingState: readingState,
                     bookGroup: bookGroupsByReadingState[readingState]!,
+                    selectReadingState: selectReadingState,
                   );
                 }),
                 IconButton(icon: Icon(Icons.add), onPressed: () => addBook(true)),

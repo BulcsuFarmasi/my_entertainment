@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/models/reading.dart';
 
 import 'book_route_path.dart';
 
@@ -17,9 +18,9 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath> {
       return Future.value(BookRoutePath.books());
     }
     if(uri.pathSegments.length == 3 && uri.pathSegments[0] == book) {
-      // if (uri.pathSegments[1] == group) {
-      //   return BookRoutePath.readingState(routeInformation)
-      // }
+      if (uri.pathSegments[1] == group) {
+        return Future.value(BookRoutePath.readingState(readingStateFromParam(uri.pathSegments[2])));
+      }
       if (uri.pathSegments[1] == detail) {
         return Future.value(BookRoutePath.isbn(int.parse(uri.pathSegments[2])));
       }
@@ -41,7 +42,7 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath> {
       return RouteInformation(location: '/$book/$newParam');
     }
     if (configuration.selectedReadingState != null) {
-      return RouteInformation(location: '/$book/$group/${configuration.selectedReadingState}');
+      return RouteInformation(location: '/$book/$group/${readingStateToParam(configuration.selectedReadingState!)}');
     }
     if (configuration.selectedIsbn != null) {
       return RouteInformation(location: '/$book/$detail/${configuration.selectedIsbn}');
