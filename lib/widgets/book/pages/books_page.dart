@@ -20,13 +20,10 @@ class BooksPage extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
+            width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  Intl.message('Könyvek'),
-                  style: Theme.of(context).textTheme.headline6,
-                ),
                 ...ReadingState.values.map((ReadingState readingState) {
                   return BookGroupPreview(
                     readingState: readingState,

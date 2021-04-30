@@ -11,9 +11,9 @@ class BookListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: 15),
       child: Column(
-        children: [Text(book.title), Text(book.author)],
+        children: [Text(book.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),), Text(book.author)],
       ),
     );
   }
