@@ -70,10 +70,6 @@ class _NewBookPageState extends State<NewBookPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text(
-              Intl.message('Új könyv'),
-              style: Theme.of(context).textTheme.headline6,
-            ),
             TextField(
               decoration: InputDecoration(labelText: Intl.message('Könyv címe')),
               onChanged: (String newTitle) => setState(() {
