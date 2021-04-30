@@ -28,7 +28,7 @@ class BookState {
     Book(
       title: 'Fecske-torony',
       basedOnTitle: 'Wieża Jaskółki',
-      isbn: 9789634069294,
+      isbn: 9789634069287,
       publicationYear: 1999,
       author: 'Andrzej Sapkowski',
     ),
