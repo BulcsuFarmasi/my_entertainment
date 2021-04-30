@@ -51,10 +51,9 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
     if (bookState.adding) {
       bookState.setAdding(!bookState.adding);
     }
-    if (bookState.selectedReading != null) {
+    if (bookState.selectedReading != null && bookState.selectedReadingState != null) {
       bookState.selectReading(null);
-    }
-    if (bookState.selectedReadingState != null) {
+    } else if (bookState.selectedReadingState != null) {
       bookState.selectReadingState(null);
     }
     notifyListeners();
