@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/book.dart';
-import '../../../models/reading.dart';
 
 class BookPreview extends StatelessWidget {
-  const BookPreview(this.book, this.reading);
+  BookPreview({required this.book, required this.selectIsbn});
 
   final Book book;
-  final Reading reading;
+  final Function selectIsbn;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      child: Column(
-        children: [Text(book.title), if (reading.currentPage != null) Text('Jelenlegi oldal: ${reading.currentPage}')],
+    return GestureDetector(
+      onTap: () => selectIsbn(book.isbn),
+      child: Card(
+        margin: EdgeInsets.symmetric(vertical: 15),
+        child: Padding(
+          padding: EdgeInsets.all(
+            15,
+          ),
+          child: Column(
+            children: [Text(book.title), Text(book.author)],
+          ),
+        ),
       ),
     );
   }

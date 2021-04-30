@@ -27,6 +27,10 @@ class _NewBookPageState extends State<NewBookPage> {
   };
 
   String? title;
+  String? author;
+  int? isbn;
+  int? publicationYear;
+  String? basedOnTitle;
   ReadingState readingState = ReadingState.wantToRead;
   int? currentPage;
 
@@ -41,11 +45,11 @@ class _NewBookPageState extends State<NewBookPage> {
 
   Book createBook() {
     return Book(
-      isbn: 1234568910,
-      author: 'E. Xample',
+      isbn: isbn!,
+      author: author!,
       title: title!,
-      basedOnTitle: '',
-      publicationYear: 1998,
+      basedOnTitle: basedOnTitle,
+      publicationYear: publicationYear!,
     );
   }
 
@@ -63,46 +67,74 @@ class _NewBookPageState extends State<NewBookPage> {
       appBar: AppBar(
         title: Text(Intl.message('Új könyv')),
       ),
-      body: Column(
-        children: [
-          Text(
-            Intl.message('Új könyv'),
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          TextField(
-            decoration: InputDecoration(labelText: Intl.message('Könyv címe')),
-            onChanged: (String newTitle) => setState(() {
-              title = newTitle;
-            }),
-          ),
-          DropdownButton<ReadingState>(
-            value: readingState,
-            items: ReadingState.values.map((ReadingState readingState) {
-              return DropdownMenuItem(
-                value: readingState,
-                child: Text(readingStateTranslations[readingState]!),
-              );
-            }).toList(growable: false),
-            onChanged: (ReadingState? newReadingState) => setState(() {
-              readingState = newReadingState!;
-            }),
-          ),
-          if (readingState == ReadingState.isReading)
-            TextField(
-              decoration: InputDecoration(labelText: Intl.message('Melyik oldalon tartasz éppen?')),
-              keyboardType: TextInputType.number,
-              onChanged: (String newCurrentPage) {
-                setState(() {
-                  currentPage = int.parse(newCurrentPage);
-                });
-              },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(
+              Intl.message('Új könyv'),
+              style: Theme.of(context).textTheme.headline6,
             ),
-          ElevatedButton(
-            onPressed: addBook,
-            child: Text(Intl.message('Könyv hozzáadása')),
-            style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
-          )
-        ],
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('Könyv címe')),
+              onChanged: (String newTitle) => setState(() {
+                title = newTitle;
+              }),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('Könyv szerzője')),
+              onChanged: (String newAuthor) => setState(() {
+                author = newAuthor;
+              }),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('Kiadás éve')),
+              keyboardType: TextInputType.number,
+              onChanged: (String newPublicationYear) => setState(() {
+                publicationYear = int.parse(newPublicationYear);
+              }),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('ISBN')),
+              keyboardType: TextInputType.number,
+              onChanged: (String newIsbn) => setState(() {
+                isbn = int.parse(newIsbn);
+              }),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: Intl.message('Kiadás alapja')),
+              onChanged: (String newBasedOnTitle) => setState(() {
+                basedOnTitle = newBasedOnTitle;
+              }),
+            ),
+            DropdownButton<ReadingState>(
+              value: readingState,
+              items: ReadingState.values.map((ReadingState readingState) {
+                return DropdownMenuItem(
+                  value: readingState,
+                  child: Text(readingStateTranslations[readingState]!),
+                );
+              }).toList(growable: false),
+              onChanged: (ReadingState? newReadingState) => setState(() {
+                readingState = newReadingState!;
+              }),
+            ),
+            if (readingState == ReadingState.isReading)
+              TextField(
+                decoration: InputDecoration(labelText: Intl.message('Melyik oldalon tartasz éppen?')),
+                keyboardType: TextInputType.number,
+                onChanged: (String newCurrentPage) {
+                  setState(() {
+                    currentPage = int.parse(newCurrentPage);
+                  });
+                },
+              ),
+            ElevatedButton(
+              onPressed: addBook,
+              child: Text(Intl.message('Könyv hozzáadása')),
+              style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+            )
+          ],
+        ),
       ),
     );
   }

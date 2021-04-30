@@ -78,6 +78,11 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
     notifyListeners();
   }
 
+  void selectIsbn(int isbn) {
+    bookState.selectReading(bookState.readings!.firstWhere((Reading reading) => reading.book.isbn == isbn));
+    notifyListeners();
+  }
+
 
 
   @override
@@ -90,7 +95,7 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
           MaterialPage(
               key: ValueKey(bookState.selectedReadingState),
               child: (BookGroupPage(bookState.bookGroupsByReadingState[bookState.selectedReadingState]!,
-                  bookState.selectedReadingState!))),
+                  bookState.selectedReadingState!, selectIsbn))),
         if (bookState.selectedReading != null)
           MaterialPage(key: ValueKey(bookState.selectedReading), child: BookDetailPage(bookState.selectedReading!)),
         if (bookState.adding)
