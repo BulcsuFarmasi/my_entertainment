@@ -1,0 +1,19 @@
+{
+  "@@locale": "hu",
+  "@@last_modified": "2021-04-29T20:59:33.151371",
+  "Szerző: ": "Szerző: ",
+  "@Szerző: ": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "ISBN: ": "ISBN: ",
+  "@ISBN: ": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "Megjelenés éve: ": "Megjelenés éve: ",
+  "@Megjelenés éve: ": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
