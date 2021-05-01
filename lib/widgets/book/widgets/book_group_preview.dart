@@ -23,7 +23,7 @@ class BookGroupPreview extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              Intl.message(readingStateTranslations[readingState]!),
+              Intl.message(readingStateLabelTranslations[readingState]!),
               style: Theme
                   .of(context)
                   .textTheme

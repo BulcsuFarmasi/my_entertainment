@@ -7,6 +7,7 @@ import 'package:my_entertainment/models/book.dart';
 
 import '../../../models/book.dart';
 import '../../../models/reading.dart';
+import '../../../translations/reading_state_translations.dart';
 
 class NewBookPage extends StatefulWidget {
   NewBookPage(this.addBook);
@@ -20,11 +21,7 @@ class NewBookPage extends StatefulWidget {
 }
 
 class _NewBookPageState extends State<NewBookPage> {
-  final Map<ReadingState, String> readingStateTranslations = {
-    ReadingState.wantToRead: Intl.message('El akarom olvasni'),
-    ReadingState.isReading: Intl.message('Éppen olvasom'),
-    ReadingState.read: Intl.message('Már elolvastam'),
-  };
+
 
   String? title;
   String? author;

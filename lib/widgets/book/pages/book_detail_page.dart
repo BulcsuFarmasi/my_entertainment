@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_entertainment/widgets/book/widgets/book_data_row.dart';
+import 'package:my_entertainment/widgets/book/widgets/reading_view.dart';
 import '../../../models/reading.dart';
 
 class BookDetailPage extends StatelessWidget {
@@ -60,18 +61,7 @@ class BookDetailPage extends StatelessWidget {
                   style: TextStyle(fontSize: 20),
                 )
               ]),
-            if (reading.currentPage != null)
-              BookDataRow(children: [
-                Text(
-                  currentPage,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                Text(
-                  reading.currentPage.toString(),
-                  style: TextStyle(fontSize: 20),
-                ),
-                ElevatedButton(onPressed: () {}, child: Text(readFurther))
-              ]),
+            ReadingView(reading: reading, modifyReading: () {})
           ],
         ),
       ),
@@ -85,8 +75,4 @@ class BookDetailPage extends StatelessWidget {
   static get publicationYear => Intl.message('Megjelenés éve: ');
 
   static get basedOnTitle => Intl.message('Eredeti cím: ');
-
-  static get currentPage => Intl.message('Jelenlegi oldal: ');
-
-  static get readFurther => Intl.message('Olvastam még');
 }
