@@ -18,7 +18,6 @@ class BookState {
 
   ReadingState? selectedReadingState;
 
-
   List<Book> books = [
     Book(
       title: 'Artemis',
@@ -43,10 +42,7 @@ class BookState {
     ),
   ];
 
-
   List<Reading>? readings;
-
-
 
   Map<ReadingState, BookGroup> get bookGroupsByReadingState {
     Map<ReadingState, BookGroup> _bookGroupsByReadingState = {};
@@ -65,7 +61,7 @@ class BookState {
     readings!.add(reading);
   }
 
-  void selectReading (Reading? reading) {
+  void selectReading(Reading? reading) {
     selectedReading = reading;
   }
 

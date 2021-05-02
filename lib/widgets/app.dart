@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/routes/book/book_route_delegate.dart';
-import 'package:my_entertainment/routes/book/book_route_information_parser.dart';
+
+import '../routes/book/book_route_delegate.dart';
+import '../routes/book/book_route_information_parser.dart';
 
 class App extends StatelessWidget {
   final BookRouteInformationParser bookRouteInformationParser = BookRouteInformationParser();

@@ -1,13 +1,9 @@
-// TODO
-// Refactor to page
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_entertainment/models/book.dart';
 
 import '../../../models/book.dart';
-import '../../../models/reading.dart';
 import '../../../models/person.dart';
+import '../../../models/reading.dart';
 import '../../../translations/reading_state_translations.dart';
 
 class NewBookPage extends StatefulWidget {
@@ -22,8 +18,6 @@ class NewBookPage extends StatefulWidget {
 }
 
 class _NewBookPageState extends State<NewBookPage> {
-
-
   String? title;
   String? authorName;
   int? isbn;

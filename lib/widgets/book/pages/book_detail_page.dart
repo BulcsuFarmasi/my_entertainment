@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_entertainment/widgets/book/widgets/book_data_row.dart';
-import 'package:my_entertainment/widgets/book/widgets/reading_view.dart';
+
 import '../../../models/reading.dart';
+import '../widgets/book_data_row.dart';
+import '../widgets/reading_view.dart';
 
 class BookDetailPage extends StatelessWidget {
   BookDetailPage(this.reading);
