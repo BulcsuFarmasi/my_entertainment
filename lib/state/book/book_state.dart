@@ -1,5 +1,6 @@
 import '../../models/book.dart';
 import '../../models/book_group.dart';
+import '../../models/person.dart';
 import '../../models/reading.dart';
 
 class BookState {
@@ -17,25 +18,26 @@ class BookState {
 
   ReadingState? selectedReadingState;
 
+
   List<Book> books = [
     Book(
-      title: 'A tó úrnője',
-      basedOnTitle: 'Pani Jeziora',
-      isbn: 9789634069294,
-      publicationYear: 1999,
-      author: 'Andrzej Sapkowski',
+      title: 'Artemis',
+      basedOnTitle: 'Artemis',
+      isbn: 9789634700081,
+      publicationYear: 2017,
+      author: Person('Andy Weir'),
     ),
     Book(
-      title: 'Fecske-torony',
-      basedOnTitle: 'Wieża Jaskółki',
-      isbn: 9789634069287,
-      publicationYear: 1999,
-      author: 'Andrzej Sapkowski',
+      title: 'Zavaros vér',
+      basedOnTitle: 'Troubled Blood',
+      isbn: 9789635660681,
+      publicationYear: 2020,
+      author: Person('Robert Galbraith'),
     ),
     Book(
       title: 'Mi vagyunk a medvék',
       basedOnTitle: 'Björnstad',
-      author: 'Fredrik Backman',
+      author: Person('Fredrik Backman'),
       publicationYear: 2016,
       isbn: 9789633245446,
     ),

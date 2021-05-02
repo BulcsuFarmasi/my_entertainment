@@ -1,3 +1,5 @@
+import './person.dart';
+
 class Book {
   Book({
     required this.isbn,
@@ -8,7 +10,7 @@ class Book {
   });
 
   final int isbn;
-  final String author;
+  final Person author;
   final String title;
   final int publicationYear;
   final String? basedOnTitle;

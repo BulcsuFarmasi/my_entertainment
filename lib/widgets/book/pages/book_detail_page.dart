@@ -26,7 +26,7 @@ class BookDetailPage extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               Text(
-                reading.book.author,
+                reading.book.author.name,
                 style: TextStyle(fontSize: 20),
               )
             ]),

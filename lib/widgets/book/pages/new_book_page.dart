@@ -7,6 +7,7 @@ import 'package:my_entertainment/models/book.dart';
 
 import '../../../models/book.dart';
 import '../../../models/reading.dart';
+import '../../../models/person.dart';
 import '../../../translations/reading_state_translations.dart';
 
 class NewBookPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _NewBookPageState extends State<NewBookPage> {
 
 
   String? title;
-  String? author;
+  String? authorName;
   int? isbn;
   int? publicationYear;
   String? basedOnTitle;
@@ -43,7 +44,7 @@ class _NewBookPageState extends State<NewBookPage> {
   Book createBook() {
     return Book(
       isbn: isbn!,
-      author: author!,
+      author: Person(authorName!),
       title: title!,
       basedOnTitle: basedOnTitle,
       publicationYear: publicationYear!,
@@ -75,8 +76,8 @@ class _NewBookPageState extends State<NewBookPage> {
             ),
             TextField(
               decoration: InputDecoration(labelText: Intl.message('Könyv szerzője')),
-              onChanged: (String newAuthor) => setState(() {
-                author = newAuthor;
+              onChanged: (String newAuthorName) => setState(() {
+                authorName = newAuthorName;
               }),
             ),
             TextField(

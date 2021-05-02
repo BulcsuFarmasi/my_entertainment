@@ -21,7 +21,7 @@ class BookPreview extends StatelessWidget {
               15,
             ),
             child: Column(
-              children: [Text(book.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),), Text(book.author, style: TextStyle(fontSize: 18),)],
+              children: [Text(book.title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),), Text(book.author.name, style: TextStyle(fontSize: 18),)],
             ),
           ),
         ),

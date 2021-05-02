@@ -13,7 +13,7 @@ class BookListItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       child: Column(
-        children: [Text(book.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),), Text(book.author)],
+        children: [Text(book.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),), Text(book.author.name)],
       ),
     );
   }
