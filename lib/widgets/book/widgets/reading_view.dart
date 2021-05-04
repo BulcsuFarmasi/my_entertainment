@@ -21,82 +21,137 @@ class ReadingView extends StatefulWidget {
   static get readFurther => Intl.message('Olvastam még');
 
   static get modifyState => Intl.message('Státusz módosítása');
+
+  static get save => Intl.message('Mentés');
 }
 
 class _ReadingViewState extends State<ReadingView> {
   bool displayModifyReadingState = false;
   bool displayModifyCurrentPage = false;
 
-  late Reading reading;
+  int? currentPage;
+  late ReadingState readingState;
 
   @override
   void initState() {
+    currentPage = widget.reading.currentPage;
+    readingState = widget.reading.state;
     super.initState();
-    reading = widget.reading;
   }
 
-  void updateReading(Reading newReading) {
+  void setDisplayModifyReadingState(bool newDisplay) {
     setState(() {
-      reading = newReading;
-      widget.modifyReading(reading);
+      displayModifyReadingState = newDisplay;
+    });
+  }
+
+  void setDisplayModifyCurrentPage(bool newDisplay) {
+    setState(() {
+      displayModifyCurrentPage = newDisplay;
+    });
+  }
+
+  void saveReading() {
+    widget.modifyReading(Reading(widget.reading.book, readingState, currentPage: currentPage));
+    setState(() {
       displayModifyReadingState = false;
       displayModifyCurrentPage = false;
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
+  void saveReadingState(ReadingState? newReadingState) {
+    setState(() {
+      readingState = newReadingState!;
+    });
+  }
+
+  void saveCurrentPage(String? newCurrentPage) {
+    setState(() {
+      currentPage = int.parse(newCurrentPage!);
+    });
+  }
+
+  List<Widget> buildReadingStatus() {
+    List<Widget> widgets = [
+      BookDataRow(children: [
         Text(
-          Intl.message(Intl.message('Olvasás')),
+          ReadingView.readingStatus,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        BookDataRow(children: [
+        Text(
+          readingStateTranslations[readingState]!,
+          style: TextStyle(fontSize: 20),
+        ),
+      ]),
+      ElevatedButton(
+          onPressed: () {
+            setDisplayModifyReadingState(true);
+          },
+          child: Text(ReadingView.modifyState)),
+    ];
+    if (displayModifyReadingState) {
+      widgets.add(DropdownButton<ReadingState>(
+        value: readingState,
+        items: ReadingState.values.map((ReadingState readingState) {
+          return DropdownMenuItem(
+            value: readingState,
+            child: Text(readingStateTranslations[readingState]!),
+          );
+        }).toList(growable: false),
+        onChanged: saveReadingState,
+      ));
+    }
+    return widgets;
+  }
+
+  List<Widget> buildCurrentPage() {
+    List<Widget> widgets = [
+      BookDataRow(children: [
+        Text(
+          ReadingView.currentPage,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        Text(
+          currentPage != null ? currentPage.toString() : "",
+          style: TextStyle(fontSize: 20),
+        ),
+      ]),
+      ElevatedButton(
+          onPressed: () {
+            setDisplayModifyCurrentPage(true);
+          },
+          child: Text(ReadingView.readFurther)),
+    ];
+    if (displayModifyCurrentPage) {
+      widgets.add(TextFormField(
+        onChanged: saveCurrentPage,
+        initialValue: currentPage != null ? currentPage.toString() : "",
+        keyboardType: TextInputType.number,
+      ));
+    }
+    return widgets;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Text(
-            ReadingView.readingStatus,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            Intl.message(Intl.message('Olvasás')),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
           ),
-          Text(
-            readingStateTranslations[widget.reading.state]!,
-            style: TextStyle(fontSize: 20),
-          ),
-        ]),
-        ElevatedButton(onPressed: () {}, child: Text(ReadingView.modifyState)),
-        if (displayModifyReadingState)
-          DropdownButton<ReadingState>(
-              value: widget.reading.state,
-              items: ReadingState.values.map((ReadingState readingState) {
-                return DropdownMenuItem(
-                  value: readingState,
-                  child: Text(readingStateTranslations[readingState]!),
-                );
-              }).toList(growable: false),
-              onChanged: (ReadingState? newReadingState) {
-                updateReading(Reading(reading.book, newReadingState!, currentPage: reading.currentPage));
-              }),
-        if (widget.reading.currentPage != null)
-          BookDataRow(children: [
-            Text(
-              ReadingView.currentPage,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            Text(
-              widget.reading.currentPage.toString(),
-              style: TextStyle(fontSize: 20),
-            ),
-          ]),
-        ElevatedButton(onPressed: () {setState(() {
-          displayModifyCurrentPage = true;
-        });}, child: Text(ReadingView.readFurther)),
-        if (displayModifyCurrentPage)
-          TextField(
-            onChanged: (String newPage) {
-              updateReading(Reading(reading.book, reading.state, currentPage: int.parse(newPage)));
-            },
-            controller: TextEditingController(text: reading.currentPage.toString()),
-          ),
-      ],
+          ...buildReadingStatus(),
+          if (readingState == ReadingState.isReading) ...buildCurrentPage(),
+          if (displayModifyCurrentPage || displayModifyReadingState)
+            ElevatedButton(
+              child: Text(ReadingView.save),
+              onPressed: saveReading,
+            )
+        ],
+      ),
     );
   }
 }

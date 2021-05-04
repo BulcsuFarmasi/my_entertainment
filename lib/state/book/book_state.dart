@@ -7,7 +7,7 @@ class BookState {
   BookState() {
     readings = [
       Reading(books[0], ReadingState.read),
-      Reading(books[1], ReadingState.isReading, currentPage: 470),
+      Reading(books[1], ReadingState.isReading, currentPage: 248),
       Reading(books[2], ReadingState.wantToRead),
     ];
   }
@@ -45,13 +45,18 @@ class BookState {
   List<Reading>? readings;
 
   Map<ReadingState, BookGroup> get bookGroupsByReadingState {
-    Map<ReadingState, BookGroup> _bookGroupsByReadingState = {};
+    Map<ReadingState, BookGroup> _bookGroupsByReadingState = {
+      ReadingState.read: BookGroup(books: [], readings: []),
+      ReadingState.isReading: BookGroup(books: [], readings: []),
+      ReadingState.wantToRead: BookGroup(books: [], readings: []),
+    };
 
     readings!.forEach((Reading reading) {
-      _bookGroupsByReadingState[reading.state] ??= BookGroup(books: [], readings: []);
       _bookGroupsByReadingState[reading.state]!.readings.add(reading);
       _bookGroupsByReadingState[reading.state]!.books.add(reading.book);
     });
+
+    print(_bookGroupsByReadingState);
 
     return _bookGroupsByReadingState;
   }
