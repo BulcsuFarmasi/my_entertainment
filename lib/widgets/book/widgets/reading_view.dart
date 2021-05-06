@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:my_entertainment/translations/reading_state_translations.dart';
@@ -143,8 +144,23 @@ class _ReadingViewState extends State<ReadingView> {
             Intl.message(Intl.message('Olvasás')),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
           ),
-          ...buildReadingStatus(),
-          if (readingState == ReadingState.isReading) ...buildCurrentPage(),
+          Container(
+            child: Column(
+              children: buildReadingStatus(),
+              crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            width: double.infinity,
+          ),
+          if (readingState == ReadingState.isReading)
+            Container(
+              child: Column(
+                children: buildCurrentPage(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              margin: EdgeInsets.only(top: 10, bottom: 40),
+              width: double.infinity,
+            ),
           if (displayModifyCurrentPage || displayModifyReadingState)
             ElevatedButton(
               child: Text(ReadingView.save),

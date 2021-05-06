@@ -1,6 +1,8 @@
+import '../general/general_route_path.dart';
+
 import '../../models/reading.dart';
 
-class BookRoutePath {
+class BookRoutePath extends GeneralRoutePath {
   int? selectedIsbn;
   ReadingState? selectedReadingState;
   bool isNew = false;
