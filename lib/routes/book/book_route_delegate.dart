@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/widgets/book/pages/book_detail_page.dart';
-import 'package:my_entertainment/widgets/book/pages/book_group_page.dart';
+import '../../features/book/pages/book_detail_page.dart';
+import '../../features/book/pages/book_group_page.dart';
 import './book_route_path.dart';
 import '../../models/book.dart';
 import '../../models/reading.dart';
 import '../../state/book/book_state.dart';
-import '../../widgets/book/pages/books_page.dart';
-import '../../widgets/book/pages/new_book_page.dart';
+import '../../features/book/pages/books_page.dart';
+import '../../features/book/pages/new_book_page.dart';
 
 class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   final GlobalKey<NavigatorState> navigatorKey;
@@ -24,11 +24,11 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
       bookState.selectReadingState(configuration.selectedReadingState);
     }
     if (configuration.selectedIsbn != null) {
-      bookState.selectReading(bookState.readings!.firstWhere((Reading reading) => reading.book.isbn == configuration.selectedIsbn));
+      bookState.selectReading(
+          bookState.readings!.firstWhere((Reading reading) => reading.book.isbn == configuration.selectedIsbn));
     }
     return Future.value(null);
   }
-
 
 
   BookRoutePath get currentConfiguration {
@@ -58,7 +58,6 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
     }
     notifyListeners();
     return true;
-
   }
 
   void setAdding(bool adding) {
@@ -89,24 +88,23 @@ class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifie
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     return Navigator(
-      key: navigatorKey,
-      pages: [
-        MaterialPage(key: ValueKey('BooksPage'), child: BooksPage(bookState.bookGroupsByReadingState, setAdding, selectReadingState)),
-        if (bookState.selectedReadingState != null)
-          MaterialPage(
-              key: ValueKey(bookState.selectedReadingState),
-              child: (BookGroupPage(bookState.bookGroupsByReadingState[bookState.selectedReadingState]!,
-                  bookState.selectedReadingState!, selectIsbn))),
-        if (bookState.selectedReading != null)
-          MaterialPage(key: ValueKey(bookState.selectedReading), child: BookDetailPage(bookState.selectedReading!, modifyReading)),
-        if (bookState.adding)
-          MaterialPage(key: ValueKey('NewBookPage'), child: NewBookPage(addBook))
-      ],
-      onPopPage: onPopPage,
+        key: navigatorKey,
+        pages: [
+    MaterialPage(key: ValueKey('BooksPage'), child: BooksPage(bookState.bookGroupsByReadingState, setAdding, selectReadingState)),
+    if (bookState.selectedReadingState != null)
+    MaterialPage(
+    key: ValueKey(bookState.selectedReadingState),
+    child: (BookGroupPage(bookState.bookGroupsByReadingState[bookState.selectedReadingState]!,
+    bookState.selectedReadingState!, selectIsbn))),
+    if (bookState.selectedReading != null)
+    MaterialPage(key: ValueKey(bookState.selectedReading), child: BookDetailPage(bookState.selectedReading!, modifyReading)),
+    if (bookState.adding)
+    MaterialPage(key: ValueKey('NewBookPage'), child: NewBookPage(addBook))
+    ],
+    onPopPage: onPopPage,
     );
   }
 }

@@ -56,8 +56,6 @@ class BookState {
       _bookGroupsByReadingState[reading.state]!.books.add(reading.book);
     });
 
-    print(_bookGroupsByReadingState);
-
     return _bookGroupsByReadingState;
   }
 

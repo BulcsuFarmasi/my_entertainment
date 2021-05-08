@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:my_entertainment/models/book_group.dart';
-import 'package:my_entertainment/models/reading.dart';
-import 'package:my_entertainment/translations/reading_state_translations.dart';
-import 'package:my_entertainment/widgets/book/widgets/book_preview.dart';
-
 import '../../../models/book.dart';
+import '../../../models/book_group.dart';
+import '../../../models/reading.dart';
+import '../../../translations/reading_state_translations.dart';
+import '../widgets/book_preview.dart';
 
 class BookGroupPage extends StatelessWidget {
   BookGroupPage(this.bookGroup, this.readingState, this.selectIsbn);
