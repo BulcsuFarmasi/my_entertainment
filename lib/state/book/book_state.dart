@@ -2,8 +2,9 @@ import '../../models/book.dart';
 import '../../models/book_group.dart';
 import '../../models/person.dart';
 import '../../models/reading.dart';
+import 'general_state.dart';
 
-class BookState {
+class BookState extends GeneralState<BookState> {
   BookState() {
     readings = [
       Reading(books[0], ReadingState.read),

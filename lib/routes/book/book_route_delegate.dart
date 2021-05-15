@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/routes/sub_route_delegate.dart';
 import '../../features/book/pages/book_detail_page.dart';
 import '../../features/book/pages/book_group_page.dart';
 import './book_route_path.dart';
@@ -8,103 +9,92 @@ import '../../state/book/book_state.dart';
 import '../../features/book/pages/books_page.dart';
 import '../../features/book/pages/new_book_page.dart';
 
-class BookRouteDelegate extends RouterDelegate<BookRoutePath> with ChangeNotifier, PopNavigatorRouterDelegateMixin {
-  final GlobalKey<NavigatorState> navigatorKey;
+class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> with ChangeNotifier{
+  BookRouteDelegate() ;
 
-  BookRouteDelegate() : navigatorKey = GlobalKey<NavigatorState>();
-
-  final BookState bookState = BookState();
+   BookState state = BookState();
 
   @override
-  Future<void> setNewRoutePath(BookRoutePath configuration) {
+  void setNewRoutePath(BookRoutePath configuration) {
     if (configuration.isNew) {
-      bookState.setAdding(true);
+      state.setAdding(true);
     }
     if (configuration.selectedReadingState != null) {
-      bookState.selectReadingState(configuration.selectedReadingState);
+      state.selectReadingState(configuration.selectedReadingState);
     }
     if (configuration.selectedIsbn != null) {
-      bookState.selectReading(
-          bookState.readings!.firstWhere((Reading reading) => reading.book.isbn == configuration.selectedIsbn));
+      state.selectReading(
+          state.readings!.firstWhere((Reading reading) => reading.book.isbn == configuration.selectedIsbn));
     }
-    return Future.value(null);
   }
-
 
   BookRoutePath get currentConfiguration {
-    if (bookState.adding) {
+    if (state.adding) {
       return BookRoutePath.isNew();
+    } else if (state.selectedReadingState != null) {
+      return BookRoutePath.readingState(state.selectedReadingState);
+    } else if (state.selectedReading != null) {
+      return BookRoutePath.isbn(state.selectedReading!.book.isbn);
+    } else {
+      return BookRoutePath.books();
     }
-    if (bookState.selectedReadingState != null) {
-      return BookRoutePath.readingState(bookState.selectedReadingState);
-    }
-    if (bookState.selectedReading != null) {
-      return BookRoutePath.isbn(bookState.selectedReading!.book.isbn);
-    }
-    return BookRoutePath.books();
   }
 
-  bool onPopPage(Route route, result) {
-    if (!route.didPop(result)) {
-      return false;
+  void onPopPage(Route route, result) {
+    if (state.adding) {
+      state.setAdding(!state.adding);
     }
-    if (bookState.adding) {
-      bookState.setAdding(!bookState.adding);
-    }
-    if (bookState.selectedReading != null && bookState.selectedReadingState != null) {
-      bookState.selectReading(null);
-    } else if (bookState.selectedReadingState != null) {
-      bookState.selectReadingState(null);
+    if (state.selectedReading != null && state.selectedReadingState != null) {
+      state.selectReading(null);
+    } else if (state.selectedReadingState != null) {
+      state.selectReadingState(null);
     }
     notifyListeners();
-    return true;
   }
 
   void setAdding(bool adding) {
-    bookState.setAdding(adding);
+    state.setAdding(adding);
     notifyListeners();
   }
 
   void addBook(Book book, Reading reading) {
-    bookState.addBook(book, reading);
-    bookState.setAdding(false);
+    state.addBook(book, reading);
+    state.setAdding(false);
     notifyListeners();
   }
 
   void selectReadingState(ReadingState readingState) {
-    bookState.selectReadingState(readingState);
+    state.selectReadingState(readingState);
     notifyListeners();
   }
 
   void selectIsbn(int isbn) {
-    bookState.selectReading(bookState.readings!.firstWhere((Reading reading) => reading.book.isbn == isbn));
+    state.selectReading(state.readings!.firstWhere((Reading reading) => reading.book.isbn == isbn));
     notifyListeners();
   }
 
   void modifyReading(Reading newReading) {
-    int readingIndex = bookState.readings!.indexWhere((Reading reading) => reading.book.isbn == newReading.book.isbn);
-    bookState.readings![readingIndex] = newReading;
+    int readingIndex = state.readings!.indexWhere((Reading reading) => reading.book.isbn == newReading.book.isbn);
+    state.readings![readingIndex] = newReading;
     notifyListeners();
   }
 
 
   @override
-  Widget build(BuildContext context) {
-    return Navigator(
-        key: navigatorKey,
-        pages: [
-    MaterialPage(key: ValueKey('BooksPage'), child: BooksPage(bookState.bookGroupsByReadingState, setAdding, selectReadingState)),
-    if (bookState.selectedReadingState != null)
-    MaterialPage(
-    key: ValueKey(bookState.selectedReadingState),
-    child: (BookGroupPage(bookState.bookGroupsByReadingState[bookState.selectedReadingState]!,
-    bookState.selectedReadingState!, selectIsbn))),
-    if (bookState.selectedReading != null)
-    MaterialPage(key: ValueKey(bookState.selectedReading), child: BookDetailPage(bookState.selectedReading!, modifyReading)),
-    if (bookState.adding)
-    MaterialPage(key: ValueKey('NewBookPage'), child: NewBookPage(addBook))
-    ],
-    onPopPage: onPopPage,
-    );
+  List<MaterialPage> build(BuildContext context) {
+    return [
+        if (state.selectedReadingState != null)
+          MaterialPage(
+              key: ValueKey(state.selectedReadingState),
+              child: (BookGroupPage(state.bookGroupsByReadingState[state.selectedReadingState]!,
+                  state.selectedReadingState!, selectIsbn))),
+        if (state.selectedReading != null)
+          MaterialPage(
+              key: ValueKey(state.selectedReading),
+              child: BookDetailPage(state.selectedReading!, modifyReading)),
+        if (state.adding) MaterialPage(key: ValueKey('NewBookPage'), child: NewBookPage(addBook))
+      ];
   }
+
+
 }
