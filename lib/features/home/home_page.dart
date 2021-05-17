@@ -22,14 +22,14 @@ class HomePage extends StatelessWidget {
               },
               child: ListTile(leading: Icon(Icons.book), title: Text(Intl.message('Könyvek')), horizontalTitleGap: 80)),
           GestureDetector(
-              onTap: () {},
+              onTap: () {setSelectedRoute('film');},
               child: ListTile(
                 leading: Icon(Icons.movie),
                 title: Text(Intl.message('Filmek')),
                 horizontalTitleGap: 80,
               )),
           GestureDetector(
-            onTap: () {},
+            onTap: () {setSelectedRoute('series');},
             child: ListTile(
               leading: Icon(Icons.tv),
               title: Text(Intl.message(('Sorozatok'))),

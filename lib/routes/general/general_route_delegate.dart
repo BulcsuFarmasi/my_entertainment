@@ -3,7 +3,9 @@ import 'package:my_entertainment/routes/book/book_route_delegate.dart';
 
 import './general_route_path.dart';
 import '../../features/book/pages/books_page.dart';
+import '../../features/film/pages/films_page.dart';
 import '../../features/home/home_page.dart';
+import '../../features/series/pages/series_page.dart';
 import '../../routes/sub_route_delegate.dart';
 import '../../state/book/book_state.dart';
 
@@ -99,6 +101,14 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
               (routeDelegates[book]! as BookRouteDelegate).setAdding,
               (routeDelegates[book]! as BookRouteDelegate).selectReadingState,
             )),
+        if (selectedRoute == film)
+          MaterialPage(
+              key: ValueKey('FilmsPage'),
+              child: FilmsPage()),
+        if (selectedRoute == series)
+          MaterialPage(
+              key: ValueKey('SeriesPage'),
+              child: SeriesPage()),
         for (SubRouteDelegate routeDelegate in routeDelegates.values) ...routeDelegate.build(context),
       ],
       onPopPage: onPopPage,
