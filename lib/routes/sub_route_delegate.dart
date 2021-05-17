@@ -7,9 +7,13 @@ abstract class SubRouteDelegate<T> {
 
   GeneralState get state;
 
+  set notifyListeners(Function newFunction);
+
+  Function get notifyListeners;
+
   T get currentConfiguration;
 
-  void onPopPage(Route route, dynamic result);
+  bool onPopPage(Route route, dynamic result);
 
   List<MaterialPage> build(BuildContext buildContext);
 }

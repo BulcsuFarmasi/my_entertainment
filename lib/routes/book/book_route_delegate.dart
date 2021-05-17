@@ -6,11 +6,18 @@ import './book_route_path.dart';
 import '../../models/book.dart';
 import '../../models/reading.dart';
 import '../../state/book/book_state.dart';
-import '../../features/book/pages/books_page.dart';
 import '../../features/book/pages/new_book_page.dart';
 
-class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> with ChangeNotifier{
-  BookRouteDelegate() ;
+class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> {
+
+
+  Function? _notifyListeners;
+
+  set notifyListeners(Function newFunction) {
+    _notifyListeners = newFunction;
+  }
+  @override
+  Function get notifyListeners => _notifyListeners!;
 
    BookState state = BookState();
 
@@ -40,16 +47,20 @@ class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> with ChangeNotif
     }
   }
 
-  void onPopPage(Route route, result) {
+  bool onPopPage(Route route, result) {
     if (state.adding) {
       state.setAdding(!state.adding);
+      return true;
     }
     if (state.selectedReading != null && state.selectedReadingState != null) {
       state.selectReading(null);
+      return true;
     } else if (state.selectedReadingState != null) {
       state.selectReadingState(null);
+      return true;
     }
     notifyListeners();
+    return false;
   }
 
   void setAdding(bool adding) {
@@ -65,6 +76,7 @@ class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> with ChangeNotif
 
   void selectReadingState(ReadingState readingState) {
     state.selectReadingState(readingState);
+    print(state.selectedReadingState);
     notifyListeners();
   }
 

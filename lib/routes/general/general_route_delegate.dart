@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/routes/book/book_route_delegate.dart';
 
 import './general_route_path.dart';
 import '../../features/book/pages/books_page.dart';
@@ -13,7 +14,14 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
 
   String? selectedRoute;
 
-  GeneralRouteDelegate(this.routeDelegates) : navigatorKey = GlobalKey<NavigatorState>();
+  GeneralRouteDelegate(this.routeDelegates) : navigatorKey = GlobalKey<NavigatorState>() {
+    initSubDelegates();
+  }
+  
+  void initSubDelegates() {
+    routeDelegates.values.forEach((SubRouteDelegate routeDelegate) { routeDelegate.notifyListeners = notifyListeners; });
+  }
+
 
   @override
   Future<void> setNewRoutePath(GeneralRoutePath configuration) {
@@ -58,9 +66,14 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
     if (!route.didPop(result)) {
       return false;
     }
+
     for (SubRouteDelegate routeDelegate in routeDelegates.values) {
-      routeDelegate.onPopPage(route, result);
+      bool popResult = routeDelegate.onPopPage(route, result);
+      if (popResult) {
+        return popResult;
+      }
     }
+    selectedRoute = home;
     return true;
   }
 
@@ -83,8 +96,8 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
             key: ValueKey('BooksPage'),
             child: BooksPage(
               (routeDelegates[book]!.state as BookState).bookGroupsByReadingState,
-              (routeDelegates[book]!.state as BookState).setAdding,
-              (routeDelegates[book]!.state as BookState).selectReadingState,
+              (routeDelegates[book]! as BookRouteDelegate).setAdding,
+              (routeDelegates[book]! as BookRouteDelegate).selectReadingState,
             )),
         for (SubRouteDelegate routeDelegate in routeDelegates.values) ...routeDelegate.build(context),
       ],

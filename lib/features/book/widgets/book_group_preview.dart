@@ -15,24 +15,24 @@ class BookGroupPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () => selectReadingState(readingState), child: Card(
-      margin: EdgeInsets.symmetric(vertical: 15),
-      child: Container(
-        padding: EdgeInsets.all(10),
-        width: 350,
-        child: Column(
-          children: [
-            Text(
-              Intl.message(readingStateLabelTranslations[readingState]!),
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,
-            ),
-            BookList(bookGroup),
-          ],
+    return GestureDetector(
+      onTap: () => selectReadingState(readingState),
+      child: Card(
+        margin: EdgeInsets.symmetric(vertical: 15),
+        child: Container(
+          padding: EdgeInsets.all(10),
+          width: 350,
+          child: Column(
+            children: [
+              Text(
+                Intl.message(readingStateLabelTranslations[readingState]!),
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              BookList(bookGroup),
+            ],
+          ),
         ),
       ),
-    ),);
+    );
   }
 }

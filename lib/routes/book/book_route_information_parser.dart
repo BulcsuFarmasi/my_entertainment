@@ -3,33 +3,33 @@ import 'package:flutter/material.dart';
 import '../../models/reading.dart';
 import './book_route_path.dart';
 
-class BookRouteInformationParser {
+class BookRouteInformationParser extends RouteInformationParser<BookRoutePath>{
   final String newParam = 'new';
   final String group = 'group';
   final String detail = 'detail';
   final String book = 'book';
   final String books = 'books';
 
-  BookRoutePath? parseRouteInformation(RouteInformation routeInformation) {
+  Future<BookRoutePath> parseRouteInformation(RouteInformation routeInformation) {
     final Uri uri = Uri.parse(routeInformation.location!);
     if (uri.pathSegments.length == 0) {
-      return BookRoutePath.books();
+      return Future.value(BookRoutePath.books());
     }
     if (uri.pathSegments.length == 3 && uri.pathSegments[0] == book) {
       if (uri.pathSegments[1] == group) {
-        return BookRoutePath.readingState(readingStateFromParam(uri.pathSegments[2]));
+        return Future.value(BookRoutePath.readingState(readingStateFromParam(uri.pathSegments[2])));
       }
       if (uri.pathSegments[1] == detail) {
-        return BookRoutePath.isbn(int.parse(uri.pathSegments[2]));
+        return Future.value(BookRoutePath.isbn(int.parse(uri.pathSegments[2])));
       }
     }
     if (uri.pathSegments[0] == book && uri.pathSegments[1] == newParam) {
-      return BookRoutePath.isNew();
+      return Future.value(BookRoutePath.isNew());
     }
 
-    if (uri.pathSegments[0] == books) {
-      return BookRoutePath.books();
-    }
+    print('book');
+
+    return Future.value(BookRoutePath.books());
   }
 
   RouteInformation? restoreRouteInformation(BookRoutePath configuration) {
