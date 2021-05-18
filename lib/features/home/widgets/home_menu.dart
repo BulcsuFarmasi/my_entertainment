@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class HomeMenu extends StatelessWidget {
+import './home_menu_item.dart';
 
+class HomeMenu extends StatelessWidget {
   HomeMenu(this.setSelectedRoute);
 
   final Function setSelectedRoute;
@@ -13,25 +14,23 @@ class HomeMenu extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        GestureDetector(
-            onTap: () {
-              setSelectedRoute('book');
-            },
-            child: ListTile(leading: Icon(Icons.book), title: Text(Intl.message('Könyvek')), horizontalTitleGap: 80)),
-        GestureDetector(
-            onTap: () {setSelectedRoute('film');},
-            child: ListTile(
-              leading: Icon(Icons.movie),
-              title: Text(Intl.message('Filmek')),
-              horizontalTitleGap: 80,
-            )),
-        GestureDetector(
-          onTap: () {setSelectedRoute('series');},
-          child: ListTile(
-            leading: Icon(Icons.tv),
-            title: Text(Intl.message(('Sorozatok'))),
-            horizontalTitleGap: 80,
-          ),
+        HomeMenuItem(
+          icon: Icons.book,
+          label: Intl.message('Könyvek'),
+          onTap: setSelectedRoute,
+          route: 'book',
+        ),
+        HomeMenuItem(
+          icon: Icons.movie,
+          label: Intl.message('Filmek'),
+          onTap: setSelectedRoute,
+          route: 'film',
+        ),
+        HomeMenuItem(
+          icon: Icons.tv,
+          label: Intl.message('Sorozatok'),
+          onTap: setSelectedRoute,
+          route: 'series',
         ),
       ],
     );
