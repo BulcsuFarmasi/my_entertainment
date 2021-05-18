@@ -10,12 +10,17 @@ class HomeMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     return GestureDetector(
         onTap: () => {onTap(route)},
         child: Container(
             margin: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-            decoration: BoxDecoration(color: Color(0xFFFFFAFA), border: Border.all(width: 1, color: Color(0xFF6666666))),
+            decoration: BoxDecoration(
+                color: Color(0xFFFFFAFA),
+                border: Border.all(width: 1, color: Color(0xFF6666666)),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                boxShadow: [
+                  BoxShadow(color: Color(0xFF777777), offset: Offset(2, 2), blurRadius: 1, spreadRadius: 1),
+                ]),
             child: ListTile(
                 contentPadding: EdgeInsets.all(20),
                 leading: Icon(
