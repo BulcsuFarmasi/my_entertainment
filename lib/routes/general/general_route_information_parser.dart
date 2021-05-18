@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/routes/book/book_route_path.dart';
 
 import './general_route_path.dart';
 

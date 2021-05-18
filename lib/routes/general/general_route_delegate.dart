@@ -4,7 +4,7 @@ import 'package:my_entertainment/routes/book/book_route_delegate.dart';
 import './general_route_path.dart';
 import '../../features/book/pages/books_page.dart';
 import '../../features/film/pages/films_page.dart';
-import '../../features/home/home_page.dart';
+import '../../features/home/pages/home_page.dart';
 import '../../features/series/pages/series_page.dart';
 import '../../routes/sub_route_delegate.dart';
 import '../../state/book/book_state.dart';
