@@ -31,7 +31,7 @@ class BooksPage extends StatelessWidget {
                     selectReadingState: selectReadingState,
                   );
                 }),
-                IconButton(icon: Icon(Icons.add), onPressed: () => addBook(true)),
+                IconButton(icon: Icon(Icons.add), iconSize: 38, onPressed: () => addBook(true)),
               ],
             ),
           ),
