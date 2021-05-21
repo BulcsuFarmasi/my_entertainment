@@ -10,4 +10,4 @@ class FilmWatching {
   FilmWatching({required this.filmId, required this.releasesWatched, this.filmWatchingState = FilmWatchingState.plannedToWatch});
 }
 
-enum FilmWatchingState { plannedToWatch, allRealeasesWatched, partOfReleasesWatched }
+enum FilmWatchingState { plannedToWatch, allReleasesWatched, partOfReleasesWatched }
