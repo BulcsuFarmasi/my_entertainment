@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/routes/film/film_route_delegate.dart';
+import 'package:my_entertainment/routes/film/film_route_information_parser.dart';
 import '../routes/book/book_route_delegate.dart';
 import '../routes/book/book_route_information_parser.dart';
+import '../routes/film/film_route_delegate.dart';
+import '../routes/film/film_route_information_parser.dart';
 import '../routes/general/general_route_delegate.dart';
 import '../routes/general/general_route_information_parser.dart';
 
 class App extends StatelessWidget {
-  final GeneralRouteInformationParser generalRouteInformationParser = GeneralRouteInformationParser([BookRouteInformationParser()]);
-  final GeneralRouteDelegate generalRouteDelegate = GeneralRouteDelegate({'book': BookRouteDelegate()});
+  final GeneralRouteInformationParser generalRouteInformationParser = GeneralRouteInformationParser([BookRouteInformationParser(), FilmRouteInformationParser(),]);
+  final GeneralRouteDelegate generalRouteDelegate = GeneralRouteDelegate({'book': BookRouteDelegate(), 'film': FilmRouteDelegate()});
 
   @override
   Widget build(BuildContext context) {

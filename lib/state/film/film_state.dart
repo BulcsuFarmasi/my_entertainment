@@ -2,8 +2,9 @@ import 'package:my_entertainment/models/film_watching.dart';
 import 'package:my_entertainment/models/language.dart';
 
 import '../../models/film_release.dart';
+import '../general_state.dart';
 
-class FilmState {
+class FilmState extends GeneralState {
   static List<FilmRelease> films = [
     FilmRelease(
         id: 1,
@@ -58,4 +59,18 @@ class FilmState {
       filmWatchingState: FilmWatchingState.plannedToWatch,
     )
   ];
+
+  Map<FilmWatchingState, List<FilmWatching>> get filmWatchingByWatchingState {
+    Map<FilmWatchingState, List<FilmWatching>> _filmWatchingsByWatchingState = {
+      FilmWatchingState.allReleasesWatched: [],
+      FilmWatchingState.partOfReleasesWatched: [],
+      FilmWatchingState.plannedToWatch: [],
+    };
+
+    watchings.forEach((FilmWatching watching) {
+      _filmWatchingsByWatchingState[watching.filmWatchingState]!.add(watching);
+    });
+
+    return _filmWatchingsByWatchingState;
+  }
 }

@@ -8,6 +8,7 @@ import '../../features/home/pages/home_page.dart';
 import '../../features/series/pages/series_page.dart';
 import '../../routes/sub_route_delegate.dart';
 import '../../state/book/book_state.dart';
+import '../../state/film/film_state.dart';
 
 class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -19,11 +20,12 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
   GeneralRouteDelegate(this.routeDelegates) : navigatorKey = GlobalKey<NavigatorState>() {
     initSubDelegates();
   }
-  
-  void initSubDelegates() {
-    routeDelegates.values.forEach((SubRouteDelegate routeDelegate) { routeDelegate.notifyListeners = notifyListeners; });
-  }
 
+  void initSubDelegates() {
+    routeDelegates.values.forEach((SubRouteDelegate routeDelegate) {
+      routeDelegate.notifyListeners = notifyListeners;
+    });
+  }
 
   @override
   Future<void> setNewRoutePath(GeneralRoutePath configuration) {
@@ -94,21 +96,18 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
           child: HomePage(setSelectedRoute),
         ),
         if (selectedRoute == book)
-        MaterialPage(
-            key: ValueKey('BooksPage'),
-            child: BooksPage(
-              (routeDelegates[book]!.state as BookState).bookGroupsByReadingState,
-              (routeDelegates[book]! as BookRouteDelegate).setAdding,
-              (routeDelegates[book]! as BookRouteDelegate).selectReadingState,
-            )),
+          MaterialPage(
+              key: ValueKey('BooksPage'),
+              child: BooksPage(
+                (routeDelegates[book]!.state as BookState).bookGroupsByReadingState,
+                (routeDelegates[book]! as BookRouteDelegate).setAdding,
+                (routeDelegates[book]! as BookRouteDelegate).selectReadingState,
+              )),
         if (selectedRoute == film)
           MaterialPage(
               key: ValueKey('FilmsPage'),
-              child: FilmsPage()),
-        if (selectedRoute == series)
-          MaterialPage(
-              key: ValueKey('SeriesPage'),
-              child: SeriesPage()),
+              child: FilmsPage((routeDelegates[film]!.state as FilmState).filmWatchingByWatchingState)),
+        if (selectedRoute == series) MaterialPage(key: ValueKey('SeriesPage'), child: SeriesPage()),
         for (SubRouteDelegate routeDelegate in routeDelegates.values) ...routeDelegate.build(context),
       ],
       onPopPage: onPopPage,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../state/book/general_state.dart';
+import '../state/general_state.dart';
 
 abstract class SubRouteDelegate<T> {
   void setNewRoutePath(T currentConfiguration);
