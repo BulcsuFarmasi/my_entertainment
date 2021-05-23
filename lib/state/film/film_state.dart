@@ -55,7 +55,7 @@ class FilmState extends GeneralState {
     ),
     FilmWatching(
       filmId: 3,
-      releasesWatched: {films[0]: false, films[1]: false},
+      releasesWatched: {films[4]: false, films[5]: false},
       filmWatchingState: FilmWatchingState.plannedToWatch,
     )
   ];
