@@ -27,7 +27,7 @@ class FilmsPage extends StatelessWidget {
                               .map(
                                 (FilmRelease filmRelease) => Column(children: [
                                   Text(filmRelease.title),
-                                  Text(DateFormat.yMd().format(filmRelease.premier))
+                                  Text(DateFormat.yMd('hu').format(filmRelease.premier))
                                 ]),
                               ),
                         ]),
