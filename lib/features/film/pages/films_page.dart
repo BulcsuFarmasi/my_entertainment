@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:my_entertainment/features/film/widgets/film_watching_preview.dart';
 import '../../../models/film_watching.dart';
-import '../../../models/film_release.dart';
+
 
 class FilmsPage extends StatelessWidget {
   FilmsPage(this.filmWatchingByWatchingState);
@@ -17,22 +18,7 @@ class FilmsPage extends StatelessWidget {
         body: Column(
           children: [
             ...filmWatchingByWatchingState.entries
-                .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => Container(
-                      child: Card(
-                        child: Column(children: [
-                          Text(entry.key.toString()),
-                          ...entry.value
-                              .map((FilmWatching watching) => watching.releasesWatched.keys
-                                  .firstWhere((FilmRelease filmRelease) => filmRelease.original))
-                              .map(
-                                (FilmRelease filmRelease) => Column(children: [
-                                  Text(filmRelease.title),
-                                  Text(DateFormat.yMd('hu').format(filmRelease.premier))
-                                ]),
-                              ),
-                        ]),
-                      ),
-                    ))
+                .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingPreview(entry))
                 .toList()
           ],
         ));
