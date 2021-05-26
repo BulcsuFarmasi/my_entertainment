@@ -16,18 +16,25 @@ class FilmWatchingPreview extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5),
       padding: EdgeInsets.all(15),
       child: Card(
-        child: Column(children: [
-          Text(filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!),
-          ...filmWatchingsByWatchingState.value
-              .map((FilmWatching watching) =>
-                  watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
-              .map(
-                (FilmRelease filmRelease) => Column(children: [
-                  Text(filmRelease.title),
-                  Text(DateFormat.yMd('hu').format(filmRelease.premier)),
-                ]),
-              ),
-        ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
+              style: TextStyle(fontSize: 26, ),
+            ),
+            ...filmWatchingsByWatchingState.value
+                .map((FilmWatching watching) =>
+                    watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
+                .map((FilmRelease filmRelease) => Container(
+                      margin: EdgeInsets.only(top: 5),
+                      child: Column(children: [
+                        Text(filmRelease.title),
+                        Text(DateFormat.yMd('hu').format(filmRelease.premier)),
+                      ]),
+                    )),
+          ],
+        ),
       ),
     );
   }

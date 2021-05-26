@@ -23,7 +23,7 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
 
  @override
  bool onPopPage(Route route, result) {
-   return true;
+   return false;
  }
 
  FilmRoutePath get currentConfiguration {
