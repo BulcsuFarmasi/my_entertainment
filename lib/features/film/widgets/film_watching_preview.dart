@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../translations/film_watching_state_tranlations.dart';
@@ -11,29 +12,41 @@ class FilmWatchingPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(15),
+      margin: EdgeInsets.symmetric(vertical: 15),
+      width: 350,
       child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
-              style: TextStyle(fontSize: 26, ),
-            ),
-            ...filmWatchingsByWatchingState.value
-                .map((FilmWatching watching) =>
-                    watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
-                .map((FilmRelease filmRelease) => Container(
-                      margin: EdgeInsets.only(top: 5),
-                      child: Column(children: [
-                        Text(filmRelease.title),
-                        Text(DateFormat.yMd('hu').format(filmRelease.premier)),
-                      ]),
-                    )),
-          ],
+        child: Padding(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                child: Text(
+                  filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
+                  style: theme.textTheme.headline6,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              ...filmWatchingsByWatchingState.value
+                  .map((FilmWatching watching) =>
+                      watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
+                  .map((FilmRelease filmRelease) => Container(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Column(children: [
+                          Text(
+                            filmRelease.title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          Text(DateFormat.yMd('hu').format(filmRelease.premier)),
+                        ]),
+                      )),
+            ],
+          ),
         ),
       ),
     );

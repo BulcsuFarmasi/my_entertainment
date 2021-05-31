@@ -15,6 +15,7 @@ class BookGroupPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     return GestureDetector(
       onTap: () => selectReadingState(readingState),
       child: Card(
@@ -26,7 +27,7 @@ class BookGroupPreview extends StatelessWidget {
             children: [
               Text(
                 Intl.message(readingStateLabelTranslations[readingState]!),
-                style: Theme.of(context).textTheme.headline6,
+                style: theme.textTheme.headline6,
               ),
               BookList(bookGroup),
             ],

@@ -73,4 +73,10 @@ class FilmState extends GeneralState {
 
     return _filmWatchingsByWatchingState;
   }
+
+  FilmWatchingState? selectedWatchingState;
+
+  void setSelectedWatchingState(FilmWatchingState newWatchingState) {
+    selectedWatchingState  = newWatchingState;
+  }
 }
