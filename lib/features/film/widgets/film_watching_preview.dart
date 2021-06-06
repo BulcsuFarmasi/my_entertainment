@@ -6,14 +6,17 @@ import '../../../models/film_watching.dart';
 import '../../../models/film_release.dart';
 
 class FilmWatchingPreview extends StatelessWidget {
-  FilmWatchingPreview(this.filmWatchingsByWatchingState);
+  FilmWatchingPreview(this.filmWatchingsByWatchingState, this.selectWatchingState);
 
   final MapEntry<FilmWatchingState, List<FilmWatching>> filmWatchingsByWatchingState;
+  final Function selectWatchingState;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return Container(
+    return GestureDetector(onTap: () {
+      selectWatchingState(filmWatchingsByWatchingState.key);
+    }, child: Container(
       margin: EdgeInsets.symmetric(vertical: 15),
       width: 350,
       child: Card(
@@ -31,24 +34,25 @@ class FilmWatchingPreview extends StatelessWidget {
               ),
               ...filmWatchingsByWatchingState.value
                   .map((FilmWatching watching) =>
-                      watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
-                  .map((FilmRelease filmRelease) => Container(
-                        padding: EdgeInsets.symmetric(vertical: 5),
-                        child: Column(children: [
-                          Text(
-                            filmRelease.title,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                          Text(DateFormat.yMd('hu').format(filmRelease.premier)),
-                        ]),
-                      )),
+                  watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
+                  .map((FilmRelease filmRelease) =>
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 5),
+                    child: Column(children: [
+                      Text(
+                        filmRelease.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(DateFormat.yMd('hu').format(filmRelease.premier)),
+                    ]),
+                  )),
             ],
           ),
         ),
       ),
-    );
+    ),);
   }
 }

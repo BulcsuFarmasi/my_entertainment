@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/routes/book/book_route_delegate.dart';
 
 import './general_route_path.dart';
+import '../book/book_route_delegate.dart';
+import '../film/film_route_delegate.dart';
 import '../../features/book/pages/books_page.dart';
 import '../../features/film/pages/films_page.dart';
 import '../../features/home/pages/home_page.dart';
@@ -105,8 +106,10 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
               )),
         if (selectedRoute == film)
           MaterialPage(
-              key: ValueKey('FilmsPage'),
-              child: FilmsPage((routeDelegates[film]!.state as FilmState).filmWatchingByWatchingState)),
+            key: ValueKey('FilmsPage'),
+            child: FilmsPage((routeDelegates[film]!.state as FilmState).filmWatchingByWatchingState,
+                (routeDelegates[film]! as FilmRouteDelegate).setSelectedWatchingState),
+          ),
         if (selectedRoute == series) MaterialPage(key: ValueKey('SeriesPage'), child: SeriesPage()),
         for (SubRouteDelegate routeDelegate in routeDelegates.values) ...routeDelegate.build(context),
       ],

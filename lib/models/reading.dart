@@ -8,21 +8,6 @@ class Reading {
   final int? currentPage;
 }
 
-ReadingState readingStateFromParam(String readingStateParam) {
-  ReadingState readingState = ReadingState.values.firstWhere((ReadingState readingState) {
-    String value = readingState.toString();
-    int locationOfDot = value.indexOf('.');
-    return readingStateParam == value.substring(locationOfDot + 1);
-  });
-  return readingState;
-}
-
-String readingStateToParam(ReadingState readingState) {
-    String value = readingState.toString();
-    int locationOfDot = value.indexOf('.');
-    return value.substring(locationOfDot + 1);
-}
-
 
 
 

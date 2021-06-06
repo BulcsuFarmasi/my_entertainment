@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/shared/enum_converter.dart';
 
 import '../../models/reading.dart';
 import './book_route_path.dart';
 
-class BookRouteInformationParser extends RouteInformationParser<BookRoutePath>{
+class BookRouteInformationParser extends RouteInformationParser<BookRoutePath> {
   final String newParam = 'new';
   final String group = 'group';
   final String detail = 'detail';
@@ -17,7 +18,8 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath>{
     }
     if (uri.pathSegments.length == 3 && uri.pathSegments[0] == book) {
       if (uri.pathSegments[1] == group) {
-        return Future.value(BookRoutePath.readingState(readingStateFromParam(uri.pathSegments[2])));
+        return Future.value(
+            BookRoutePath.readingState(EnumConverter.stringToValue(uri.pathSegments[2], ReadingState.values)));
       }
       if (uri.pathSegments[1] == detail) {
         return Future.value(BookRoutePath.isbn(int.parse(uri.pathSegments[2])));
@@ -27,8 +29,6 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath>{
       return Future.value(BookRoutePath.isNew());
     }
 
-    print('book');
-
     return Future.value(BookRoutePath.books());
   }
 
@@ -36,7 +36,8 @@ class BookRouteInformationParser extends RouteInformationParser<BookRoutePath>{
     if (configuration.isNew) {
       return RouteInformation(location: '/$book/$newParam');
     } else if (configuration.selectedReadingState != null) {
-      return RouteInformation(location: '/$book/$group/${readingStateToParam(configuration.selectedReadingState!)}');
+      return RouteInformation(
+          location: '/$book/$group/${EnumConverter.valueToString(configuration.selectedReadingState!)}');
     } else if (configuration.selectedIsbn != null) {
       return RouteInformation(location: '/$book/$detail/${configuration.selectedIsbn}');
     } else {

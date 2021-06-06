@@ -76,7 +76,7 @@ class FilmState extends GeneralState {
 
   FilmWatchingState? selectedWatchingState;
 
-  void setSelectedWatchingState(FilmWatchingState newWatchingState) {
+  void setSelectedWatchingState(FilmWatchingState? newWatchingState) {
     selectedWatchingState  = newWatchingState;
   }
 }

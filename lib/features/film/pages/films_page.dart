@@ -4,9 +4,10 @@ import 'package:my_entertainment/features/film/widgets/film_watching_preview.dar
 import '../../../models/film_watching.dart';
 
 class FilmsPage extends StatelessWidget {
-  FilmsPage(this.filmWatchingByWatchingState);
+  FilmsPage(this.filmWatchingByWatchingState, this.selectWatchingState);
 
   final Map<FilmWatchingState, List<FilmWatching>> filmWatchingByWatchingState;
+  final Function selectWatchingState;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class FilmsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ...filmWatchingByWatchingState.entries
-                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingPreview(entry))
+                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingPreview(entry, selectWatchingState))
                   .toList()
             ],
           )),
