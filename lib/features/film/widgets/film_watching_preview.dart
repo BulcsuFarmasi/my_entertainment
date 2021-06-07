@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/film_watching.dart';
-import '../../../translations/film_watching_state_tranlations.dart';
+import '../../../shared/translations/film_watching_state_tranlations.dart';
 import './film_watchings.dart';
 
 class FilmWatchingPreview extends StatelessWidget {
