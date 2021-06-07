@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'book_list.dart';
+
 import '../../../models/book_group.dart';
 import '../../../models/reading.dart';
-import '../../../translations/reading_state_translations.dart';
+import '../../../shared/translations/reading_state_translations.dart';
+import 'book_list.dart';
 
 class BookGroupPreview extends StatelessWidget {
   BookGroupPreview({required this.readingState, required this.bookGroup, required this.selectReadingState});

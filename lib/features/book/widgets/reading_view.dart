@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_entertainment/translations/reading_state_translations.dart';
 
 import '../../../models/reading.dart';
+import '../../../shared/translations/reading_state_translations.dart';
 import '../widgets/book_data_row.dart';
 
 class ReadingView extends StatefulWidget {
