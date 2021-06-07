@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-import '../models/reading.dart';
+import '../../models/reading.dart';
 
 Map<ReadingState, String> readingStateLabelTranslations = {
   ReadingState.wantToRead: Intl.message('El akarom olvasni'),

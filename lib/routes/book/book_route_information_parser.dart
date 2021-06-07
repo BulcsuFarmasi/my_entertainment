@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/shared/enum_converter.dart';
+import 'package:my_entertainment/shared/utils/enum_converter.dart';
 
 import '../../models/reading.dart';
 import './book_route_path.dart';

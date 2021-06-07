@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import './film_route_path.dart';
 import '../../models/film_watching.dart';
-import '../../shared/enum_converter.dart';
+import '../../shared/utils/enum_converter.dart';
 
 class FilmRouteInformationParser extends RouteInformationParser<FilmRoutePath> {
   final String newParam = 'new';
