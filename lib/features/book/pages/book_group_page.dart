@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../models/book.dart';
 import '../../../models/book_group.dart';
 import '../../../models/reading.dart';
-import '../../../translations/reading_state_translations.dart';
+import '../../../shared/translations/reading_state_translations.dart';
 import '../widgets/book_preview.dart';
 
 class BookGroupPage extends StatelessWidget {

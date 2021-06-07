@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../models/book.dart';
 import '../../../models/person.dart';
 import '../../../models/reading.dart';
-import '../../../translations/reading_state_translations.dart';
+import '../../../shared/translations/reading_state_translations.dart';
 
 class NewBookPage extends StatefulWidget {
   NewBookPage(this.addBook);
