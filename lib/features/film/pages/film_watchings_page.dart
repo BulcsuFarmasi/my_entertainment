@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/models/film_watching.dart';
+import 'package:my_entertainment/features/film/widgets/film_watchings.dart';
+import '../../../models/film_watching.dart';
+import '../../../translations/film_watching_state_tranlations.dart';
 
 class FilmWatchingsPage extends StatelessWidget {
   FilmWatchingsPage(this.filmWatchingState, this.filmWatchings);
@@ -9,8 +11,17 @@ class FilmWatchingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(filmWatchingState.toString()),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          filmWatchingStateTranslations[filmWatchingState]!,
+        ),
+      ),
+      body: Column(
+        children: [
+          ...filmWatchings.map((FilmWatching filmWatching) => FilmWatchings(filmWatching)),
+        ],
+      ),
     );
   }
 }

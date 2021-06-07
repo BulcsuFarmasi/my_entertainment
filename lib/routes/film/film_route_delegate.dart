@@ -10,7 +10,12 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
   @override
   List<MaterialPage> build(BuildContext context) {
     return [
-      if (state.selectedWatchingState != null) MaterialPage(child: FilmWatchingsPage(state.selectedWatchingState!, []))
+      if (state.selectedWatchingState != null)
+        MaterialPage(
+            child: FilmWatchingsPage(
+          state.selectedWatchingState!,
+          state.filmWatchingByWatchingState[state.selectedWatchingState]!,
+        ))
     ];
   }
 
@@ -27,6 +32,8 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
   bool onPopPage(Route route, result) {
     if (state.selectedWatchingState != null) {
       state.setSelectedWatchingState(null);
+      notifyListeners();
+      return true;
     }
     return false;
   }

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import '../../../translations/film_watching_state_tranlations.dart';
+
 import '../../../models/film_watching.dart';
-import '../../../models/film_release.dart';
+import '../../../translations/film_watching_state_tranlations.dart';
+import './film_watchings.dart';
 
 class FilmWatchingPreview extends StatelessWidget {
   FilmWatchingPreview(this.filmWatchingsByWatchingState, this.selectWatchingState);
@@ -32,23 +32,7 @@ class FilmWatchingPreview extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ...filmWatchingsByWatchingState.value
-                  .map((FilmWatching watching) =>
-                  watching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original))
-                  .map((FilmRelease filmRelease) =>
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
-                    child: Column(children: [
-                      Text(
-                        filmRelease.title,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Text(DateFormat.yMd('hu').format(filmRelease.premier)),
-                    ]),
-                  )),
+              ...filmWatchingsByWatchingState.value.map((FilmWatching filmWatching) => FilmWatchings(filmWatching)),
             ],
           ),
         ),
