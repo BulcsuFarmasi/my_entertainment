@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/features/film/widgets/film_watchings.dart';
+import 'package:my_entertainment/features/film/widgets/film_watching_preview.dart';
 import '../../../models/film_watching.dart';
 import '../../../shared/translations/film_watching_state_tranlations.dart';
 
@@ -19,7 +19,7 @@ class FilmWatchingsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ...filmWatchings.map((FilmWatching filmWatching) => FilmWatchings(filmWatching)),
+          ...filmWatchings.map((FilmWatching filmWatching) => FilmWatchingPreview(filmWatching)),
         ],
       ),
     );

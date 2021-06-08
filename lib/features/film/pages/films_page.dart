@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_entertainment/features/film/widgets/film_watching_preview.dart';
 import '../../../models/film_watching.dart';
+import '../widgets/film_watchings_preview.dart';
 
 class FilmsPage extends StatelessWidget {
   FilmsPage(this.filmWatchingByWatchingState, this.selectWatchingState);
@@ -21,7 +21,7 @@ class FilmsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ...filmWatchingByWatchingState.entries
-                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingPreview(entry, selectWatchingState))
+                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingsPreview(entry, selectWatchingState))
                   .toList()
             ],
           )),

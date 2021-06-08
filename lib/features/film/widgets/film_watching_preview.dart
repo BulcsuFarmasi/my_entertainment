@@ -1,42 +1,30 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+import '../../../models/film_release.dart';
 import '../../../models/film_watching.dart';
-import '../../../shared/translations/film_watching_state_tranlations.dart';
-import './film_watchings.dart';
 
 class FilmWatchingPreview extends StatelessWidget {
-  FilmWatchingPreview(this.filmWatchingsByWatchingState, this.selectWatchingState);
+  FilmWatchingPreview(this.filmWatching);
 
-  final MapEntry<FilmWatchingState, List<FilmWatching>> filmWatchingsByWatchingState;
-  final Function selectWatchingState;
+  final FilmWatching filmWatching;
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    return GestureDetector(onTap: () {
-      selectWatchingState(filmWatchingsByWatchingState.key);
-    }, child: Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
-      width: 350,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                child: Text(
-                  filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
-                  style: theme.textTheme.headline6,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              ...filmWatchingsByWatchingState.value.map((FilmWatching filmWatching) => FilmWatchings(filmWatching)),
-            ],
+    FilmRelease original =
+        filmWatching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original);
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5),
+      child: Column(children: [
+        Text(
+          original.title,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
         ),
-      ),
-    ),);
+        Text(DateFormat.yMd('hu').format(original.premier)),
+      ]),
+    );
   }
 }
