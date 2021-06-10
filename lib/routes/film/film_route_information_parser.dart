@@ -17,6 +17,10 @@ class FilmRouteInformationParser extends RouteInformationParser<FilmRoutePath> {
         return Future.value(
             FilmRoutePath.watchingState(EnumConverter.stringToValue(uri.pathSegments[2], FilmWatchingState.values)));
       }
+      if (uri.pathSegments[1] == detail) {
+        return Future.value(
+            FilmRoutePath.watching(int.parse(uri.pathSegments[2])));
+      }
     }
 
     return Future.value(null);
@@ -26,6 +30,10 @@ class FilmRouteInformationParser extends RouteInformationParser<FilmRoutePath> {
     if (configuration.selectedWatchingState != null) {
       return RouteInformation(
           location: '/$film/$watchings/${EnumConverter.valueToString(configuration.selectedWatchingState)}');
+    }
+    if (configuration.selectedFilmId != null) {
+      return RouteInformation(
+          location: '/$film/$watchings/${configuration.selectedFilmId}');
     }
   }
 }

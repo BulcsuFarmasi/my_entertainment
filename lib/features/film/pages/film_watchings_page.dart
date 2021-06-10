@@ -4,10 +4,11 @@ import '../../../models/film_watching.dart';
 import '../../../shared/translations/film_watching_state_tranlations.dart';
 
 class FilmWatchingsPage extends StatelessWidget {
-  FilmWatchingsPage(this.filmWatchingState, this.filmWatchings);
+  FilmWatchingsPage(this.filmWatchingState, this.filmWatchings, this.selectFilmWatching);
 
   final FilmWatchingState filmWatchingState;
   final List<FilmWatching> filmWatchings;
+  final Function selectFilmWatching;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,12 @@ class FilmWatchingsPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          ...filmWatchings.map((FilmWatching filmWatching) => FilmWatchingPreview(filmWatching)),
+          ...filmWatchings.map(
+            (FilmWatching filmWatching) => GestureDetector(
+              onTap: () => selectFilmWatching(filmWatching),
+              child: FilmWatchingPreview(filmWatching),
+            ),
+          )
         ],
       ),
     );
