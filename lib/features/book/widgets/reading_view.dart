@@ -14,16 +14,6 @@ class ReadingView extends StatefulWidget {
 
   @override
   _ReadingViewState createState() => _ReadingViewState();
-
-  static get readingStatus => Intl.message('Olvasási státusz: ');
-
-  static get currentPage => Intl.message('Jelenlegi oldal: ');
-
-  static get readFurther => Intl.message('Olvastam még');
-
-  static get modifyState => Intl.message('Státusz módosítása');
-
-  static get save => Intl.message('Mentés');
 }
 
 class _ReadingViewState extends State<ReadingView> {
@@ -76,7 +66,7 @@ class _ReadingViewState extends State<ReadingView> {
     List<Widget> widgets = [
       BookDataRow(children: [
         Text(
-          ReadingView.readingStatus,
+          _textReadingStatus,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         Text(
@@ -88,7 +78,7 @@ class _ReadingViewState extends State<ReadingView> {
           onPressed: () {
             setDisplayModifyReadingState(true);
           },
-          child: Text(ReadingView.modifyState)),
+          child: Text(_textNodifyState)),
     ];
     if (displayModifyReadingState) {
       widgets.add(DropdownButton<ReadingState>(
@@ -109,7 +99,7 @@ class _ReadingViewState extends State<ReadingView> {
     List<Widget> widgets = [
       BookDataRow(children: [
         Text(
-          ReadingView.currentPage,
+          _textCurrentPage,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         Text(
@@ -121,7 +111,7 @@ class _ReadingViewState extends State<ReadingView> {
           onPressed: () {
             setDisplayModifyCurrentPage(true);
           },
-          child: Text(ReadingView.readFurther)),
+          child: Text(_textReadFurther)),
     ];
     if (displayModifyCurrentPage) {
       widgets.add(TextFormField(
@@ -141,7 +131,7 @@ class _ReadingViewState extends State<ReadingView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            Intl.message(Intl.message('Olvasás')),
+            _textReading,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
           ),
           Container(
@@ -163,11 +153,27 @@ class _ReadingViewState extends State<ReadingView> {
             ),
           if (displayModifyCurrentPage || displayModifyReadingState)
             ElevatedButton(
-              child: Text(ReadingView.save),
+              child: Text(_textSave),
               onPressed: saveReading,
             )
         ],
       ),
     );
   }
+
+  static final _textCurrentPage = Intl.message('Jelenlegi oldal: ');
+  
+  static final _textNodifyState = Intl.message('Státusz módosítása');
+  
+  static final _textReadingStatus = Intl.message('Olvasási státusz: ');
+  
+  
+  static final _textReading = Intl.message('Olvasás');
+
+  static final _textReadFurther = Intl.message('Olvastam még');
+
+
+
+  static final _textSave = Intl.message('Mentés');
+
 }

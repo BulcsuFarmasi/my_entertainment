@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/models/film_watching.dart';
+
+import '../../../models/film_release.dart';
+import '../../../models/film_watching.dart';
 
 class FilmDetailsPage extends StatefulWidget {
   FilmDetailsPage(this.filmWatching);
@@ -13,9 +15,14 @@ class FilmDetailsPage extends StatefulWidget {
 class _FilmDetailPageState extends State<FilmDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    final FilmRelease original =
+        widget.filmWatching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original);
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.filmWatching.filmId.toString()),
+        title: Text(original.title),
+      ),
+      body: Column(
+        children: [],
       ),
     );
   }
