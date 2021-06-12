@@ -10,7 +10,8 @@ class FilmState extends GeneralState {
         id: 1,
         premier: DateTime(2021, 3, 18),
         title: 'Zack Synder\'s Justice Leage',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'), original: true),
+        language: Language(endonym: 'Engish (US)', code: 'en-US'),
+        original: true),
     FilmRelease(
         id: 1,
         premier: DateTime(2021, 3, 18),
@@ -22,7 +23,8 @@ class FilmState extends GeneralState {
         id: 2,
         premier: DateTime(2020, 11, 10),
         title: 'Soul',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'), original: true),
+        language: Language(endonym: 'Engish (US)', code: 'en-US'),
+        original: true),
     FilmRelease(
         id: 2,
         premier: DateTime(2020, 11, 10),
@@ -33,7 +35,8 @@ class FilmState extends GeneralState {
         id: 3,
         premier: DateTime(2022, 06, 30),
         title: 'Minions: The Rise of Gru',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'), original: true),
+        language: Language(endonym: 'Engish (US)', code: 'en-US'),
+        original: true),
     FilmRelease(
         id: 3,
         premier: DateTime(2022, 06, 30),
@@ -75,8 +78,13 @@ class FilmState extends GeneralState {
   }
 
   FilmWatchingState? selectedWatchingState;
+  FilmWatching? selectedWatching;
 
-  void setSelectedWatchingState(FilmWatchingState? newWatchingState) {
-    selectedWatchingState  = newWatchingState;
+  void selectWatchingState(FilmWatchingState? newWatchingState) {
+    selectedWatchingState = newWatchingState;
+  }
+
+  void selectWatching(FilmWatching? newWatching) {
+    selectedWatching = newWatching;
   }
 }

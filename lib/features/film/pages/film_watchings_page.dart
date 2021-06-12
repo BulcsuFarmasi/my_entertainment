@@ -22,7 +22,7 @@ class FilmWatchingsPage extends StatelessWidget {
         children: [
           ...filmWatchings.map(
             (FilmWatching filmWatching) => GestureDetector(
-              onTap: () => selectFilmWatching(filmWatching),
+              onTap: () => selectFilmWatching(filmWatching.filmId),
               child: FilmWatchingPreview(filmWatching),
             ),
           )

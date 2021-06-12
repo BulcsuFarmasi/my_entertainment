@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_entertainment/features/film/pages/film_watchings_page.dart';
-import 'package:my_entertainment/models/film_watching.dart';
-import 'package:my_entertainment/routes/film/film_route_path.dart';
-import 'package:my_entertainment/routes/sub_route_delegate.dart';
+
+import '../../features/film/pages/film_watchings_page.dart';
+import '../../features/film/pages/film_details_page.dart';
+import '../../models/film_watching.dart';
+import '../../routes/film/film_route_path.dart';
+import '../../routes/sub_route_delegate.dart';
 
 import '../../state/film/film_state.dart';
 
@@ -12,9 +14,12 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
     return [
       if (state.selectedWatchingState != null)
         MaterialPage(
-            child: FilmWatchingsPage(
-          state.selectedWatchingState!,
-          state.filmWatchingByWatchingState[state.selectedWatchingState]!,
+            child: FilmWatchingsPage(state.selectedWatchingState!,
+                state.filmWatchingByWatchingState[state.selectedWatchingState]!, selectWatching)),
+      if (state.selectedWatching != null)
+        MaterialPage(
+            child: FilmDetailsPage(
+          state.selectedWatching!,
         ))
     ];
   }
@@ -30,8 +35,13 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
 
   @override
   bool onPopPage(Route route, result) {
+    if (state.selectedWatchingState != null && state.selectedWatching != null) {
+      state.selectWatching(null);
+      notifyListeners();
+      return true;
+    }
     if (state.selectedWatchingState != null) {
-      state.setSelectedWatchingState(null);
+      state.selectWatchingState(null);
       notifyListeners();
       return true;
     }
@@ -42,18 +52,30 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
     if (state.selectedWatchingState != null) {
       return FilmRoutePath.watchingState(state.selectedWatchingState);
     }
+    if (state.selectedWatching != null) {
+      return FilmRoutePath.watching(state.selectedWatching?.filmId);
+    }
     return FilmRoutePath();
   }
 
   @override
   void setNewRoutePath(FilmRoutePath configuration) {
     if (configuration.selectedWatchingState != null) {
-      state.setSelectedWatchingState(configuration.selectedWatchingState);
+      state.selectWatchingState(configuration.selectedWatchingState);
+    }
+    if (configuration.selectedFilmId != null) {
+      state.selectWatching(state.watchings
+          .firstWhere((FilmWatching filmWatching) => filmWatching.filmId == configuration.selectedFilmId));
     }
   }
 
-  void setSelectedWatchingState(FilmWatchingState watchingState) {
-    state.setSelectedWatchingState(watchingState);
+  void selectWatchingState(FilmWatchingState watchingState) {
+    state.selectWatchingState(watchingState);
+    notifyListeners();
+  }
+
+  void selectWatching(int filmId) {
+    state.selectWatching(state.watchings.firstWhere((FilmWatching filmWatching) => filmWatching.filmId == filmId));
     notifyListeners();
   }
 
