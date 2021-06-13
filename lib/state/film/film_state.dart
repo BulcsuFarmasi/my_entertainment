@@ -1,6 +1,6 @@
 import 'package:my_entertainment/models/film_watching.dart';
-import 'package:my_entertainment/models/language.dart';
 
+import '../../shared/languages.dart';
 import '../../models/film_release.dart';
 import '../general_state.dart';
 
@@ -10,7 +10,7 @@ class FilmState extends GeneralState {
         id: 1,
         premier: DateTime(2021, 3, 18),
         title: 'Zack Synder\'s Justice Leage',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'),
+        language: languages['en-US']!,
         original: true),
     FilmRelease(
         id: 1,
@@ -18,31 +18,28 @@ class FilmState extends GeneralState {
         localPremier: DateTime(2021, 3, 18),
         title: 'Zack Synder\'s Justice Leage',
         localTitle: 'Zack Synder: Az igazság ligája',
-        language: Language(endonym: 'magyar', code: 'hu-HU')),
+        language: languages['hu-HU']!),
+    FilmRelease(id: 2, premier: DateTime(2020, 11, 10), title: 'Soul', language: languages['en-US']!, original: true),
     FilmRelease(
-        id: 2,
-        premier: DateTime(2020, 11, 10),
-        title: 'Soul',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'),
-        original: true),
-    FilmRelease(
-        id: 2,
-        premier: DateTime(2021, 06, 03),
-        title: 'Soul',
-        localTitle: 'Lelki ismeretek',
-        language: Language(endonym: 'magyar', code: 'hu-HU')),
+      id: 2,
+      premier: DateTime(2021, 06, 03),
+      title: 'Soul',
+      localTitle: 'Lelki ismeretek',
+      language: languages['hu-HU']!,
+    ),
     FilmRelease(
         id: 3,
         premier: DateTime(2022, 06, 30),
         title: 'Minions: The Rise of Gru',
-        language: Language(endonym: 'Engish (US)', code: 'en-US'),
+        language: languages['en-US']!,
         original: true),
     FilmRelease(
-        id: 3,
-        premier: DateTime(2022, 06, 30),
-        title: 'Minions: The Rise of Gru',
-        localTitle: 'Minyonok: Gru színre lép',
-        language: Language(endonym: 'magyar', code: 'hu-HU')),
+      id: 3,
+      premier: DateTime(2022, 06, 30),
+      title: 'Minions: The Rise of Gru',
+      localTitle: 'Minyonok: Gru színre lép',
+      language: languages['hu-HU']!,
+    ),
   ];
 
   List<FilmWatching> watchings = [
