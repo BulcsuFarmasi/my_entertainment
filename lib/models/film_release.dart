@@ -10,9 +10,9 @@ class FilmRelease extends Film {
   FilmRelease(
       {required int id,
         required DateTime premier,
-      String? localTitle,
+      this.localTitle,
       required String title,
-      DateTime? localPremier,
+      this.localPremier,
       required this.language, this.original = false})
       : super(id: id, premier: premier, title: title) {
     this.localPremier ??= premier;

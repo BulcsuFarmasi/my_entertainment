@@ -27,7 +27,7 @@ class FilmState extends GeneralState {
         original: true),
     FilmRelease(
         id: 2,
-        premier: DateTime(2020, 11, 10),
+        premier: DateTime(2021, 06, 03),
         title: 'Soul',
         localTitle: 'Lelki ismeretek',
         language: Language(endonym: 'magyar', code: 'hu-HU')),
