@@ -16,6 +16,15 @@ class FilmDetailsPage extends StatefulWidget {
 }
 
 class _FilmDetailPageState extends State<FilmDetailsPage> {
+
+  late FilmWatching filmWatching;
+
+  @override
+  void initState() {
+    super.initState();
+    filmWatching = widget.filmWatching;
+  }
+
   List<Widget> buildReleases(Map<FilmRelease, bool> releasesWatched) {
     List<Widget> widgets = [];
     releasesWatched.forEach((FilmRelease release, bool watched) {
@@ -23,7 +32,19 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
         children: [
           Text(release.localTitle!),
           Text(DateFormat.yMd('hu').format(release.localPremier!)),
-          Checkbox(value: watched, onChanged: (changedWatched) {}),
+          Checkbox(value: watched, onChanged: (newWatched) {
+            setState(() {
+              filmWatching.releasesWatched[release] = newWatched!;
+              int numberOfWatchedReleases = filmWatching.releasesWatched.values.where((bool watched) => watched).length;
+              if (numberOfWatchedReleases == filmWatching.releasesWatched.length) {
+                filmWatching.filmWatchingState = FilmWatchingState.allReleasesWatched;
+              } else if(numberOfWatchedReleases > 0) {
+                filmWatching.filmWatchingState = FilmWatchingState.partOfReleasesWatched;
+              } else {
+                filmWatching.filmWatchingState = FilmWatchingState.plannedToWatch;
+              }
+            });
+          }),
         ],
       ));
     });
@@ -33,14 +54,14 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
   @override
   Widget build(BuildContext context) {
     final FilmRelease original =
-        widget.filmWatching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original);
+        filmWatching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original);
     return Scaffold(
       appBar: AppBar(
         title: Text(original.title),
       ),
       body: Column(children: [
-        Text(filmWatchingStateTranslations[widget.filmWatching.filmWatchingState]!),
-        ...buildReleases(widget.filmWatching.releasesWatched)
+        Text(filmWatchingStateTranslations[filmWatching.filmWatchingState]!),
+        ...buildReleases(filmWatching.releasesWatched)
       ]),
     );
   }

@@ -84,4 +84,9 @@ class FilmState extends GeneralState {
   void selectWatching(FilmWatching? newWatching) {
     selectedWatching = newWatching;
   }
+
+  void updateWatching(FilmWatching filmWatching) {
+    final int watchingIndex = watchings.indexWhere((FilmWatching watching) => watching.filmId == filmWatching.filmId);
+    watchings[watchingIndex] = filmWatching;
+  }
 }
