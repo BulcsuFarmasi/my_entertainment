@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../models/book.dart';
 import '../../../models/book_group.dart';
@@ -19,9 +20,16 @@ class BookGroupPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(readingStateTranslations[readingState]!),
       ),
-      body: Column(children: bookGroup.books.map((Book book) {
-        return BookPreview(book: book, selectIsbn: selectIsbn);
-      },).toList() ),
+      body: Column(
+          children: (bookGroup.books.isEmpty)
+              ? [Text(_textNoBooks)]
+              : bookGroup.books.map(
+                  (Book book) {
+                    return BookPreview(book: book, selectIsbn: selectIsbn);
+                  },
+                ).toList()),
     );
   }
+
+  final String _textNoBooks = Intl.message('Ebben a katerógiában most nincs könyv');
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_entertainment/features/film/widgets/film_watching_preview.dart';
 import '../../../models/film_watching.dart';
 import '../../../shared/translations/film_watching_state_tranlations.dart';
@@ -19,15 +20,19 @@ class FilmWatchingsPage extends StatelessWidget {
         ),
       ),
       body: Column(
-        children: [
-          ...filmWatchings.map(
-            (FilmWatching filmWatching) => GestureDetector(
-              onTap: () => selectFilmWatching(filmWatching.filmId),
-              child: FilmWatchingPreview(filmWatching),
-            ),
-          )
-        ],
+        children: (filmWatchings.isEmpty)
+            ? Text(_textNoFilms)
+            : filmWatchings
+            .map((FilmWatching filmWatching) {
+          return GestureDetector(
+            onTap: () => selectFilmWatching(filmWatching.filmId),
+            child: FilmWatchingPreview(filmWatching),
+          );
+        })
+            .toList(),
       ),
     );
   }
+
+  final String _textNoFilms = Intl.message('Ebben a kategóriában most nincs film');
 }
