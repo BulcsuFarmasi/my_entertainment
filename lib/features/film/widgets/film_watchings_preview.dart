@@ -14,29 +14,23 @@ class FilmWatchingsPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return GestureDetector(onTap: () {
-      selectWatchingState(filmWatchingsByWatchingState.key);
-    }, child: Container(
-      margin: EdgeInsets.symmetric(vertical: 15),
-      width: 350,
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                child: Text(
-                  filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
-                  style: theme.textTheme.headline6,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              ...filmWatchingsByWatchingState.value.map((FilmWatching filmWatching) => FilmWatchingPreview(filmWatching)),
-            ],
+    return GestureDetector(
+      onTap: () {
+        selectWatchingState(filmWatchingsByWatchingState.key);
+      },
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            child: Text(
+              filmWatchingStateTranslations[filmWatchingsByWatchingState.key]!,
+              style: theme.textTheme.headline6,
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
+          ...filmWatchingsByWatchingState.value.map((FilmWatching filmWatching) => FilmWatchingPreview(filmWatching)),
+        ],
       ),
-    ),);
+    );
   }
 }

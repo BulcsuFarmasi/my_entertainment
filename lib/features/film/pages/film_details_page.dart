@@ -16,7 +16,6 @@ class FilmDetailsPage extends StatefulWidget {
 }
 
 class _FilmDetailPageState extends State<FilmDetailsPage> {
-
   late FilmWatching filmWatching;
 
   @override
@@ -28,25 +27,33 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
   List<Widget> buildReleases(Map<FilmRelease, bool> releasesWatched) {
     List<Widget> widgets = [];
     releasesWatched.forEach((FilmRelease release, bool watched) {
-      widgets.add(Row(
-        children: [
-          Text(release.localTitle!),
-          Text(DateFormat.yMd('hu').format(release.localPremier!)),
-          Checkbox(value: watched, onChanged: (newWatched) {
-            setState(() {
-              filmWatching.releasesWatched[release] = newWatched!;
-              int numberOfWatchedReleases = filmWatching.releasesWatched.values.where((bool watched) => watched).length;
-              if (numberOfWatchedReleases == filmWatching.releasesWatched.length) {
-                filmWatching.filmWatchingState = FilmWatchingState.allReleasesWatched;
-              } else if(numberOfWatchedReleases > 0) {
-                filmWatching.filmWatchingState = FilmWatchingState.partOfReleasesWatched;
-              } else {
-                filmWatching.filmWatchingState = FilmWatchingState.plannedToWatch;
-              }
-            });
-          }),
-        ],
-      ));
+      widgets.add(
+        Card(
+            margin: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(release.localTitle!),
+                Text(DateFormat.yMd('hu').format(release.localPremier!)),
+                Checkbox(
+                    value: watched,
+                    onChanged: (newWatched) {
+                      setState(() {
+                        filmWatching.releasesWatched[release] = newWatched!;
+                        int numberOfWatchedReleases =
+                            filmWatching.releasesWatched.values.where((bool watched) => watched).length;
+                        if (numberOfWatchedReleases == filmWatching.releasesWatched.length) {
+                          filmWatching.filmWatchingState = FilmWatchingState.allReleasesWatched;
+                        } else if (numberOfWatchedReleases > 0) {
+                          filmWatching.filmWatchingState = FilmWatchingState.partOfReleasesWatched;
+                        } else {
+                          filmWatching.filmWatchingState = FilmWatchingState.plannedToWatch;
+                        }
+                      });
+                    }),
+              ],
+            )),
+      );
     });
     return widgets;
   }
@@ -60,7 +67,13 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
         title: Text(original.title),
       ),
       body: Column(children: [
-        Text(filmWatchingStateTranslations[filmWatching.filmWatchingState]!),
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 15),
+          child: Text(
+            filmWatchingStateTranslations[filmWatching.filmWatchingState]!,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
         ...buildReleases(filmWatching.releasesWatched)
       ]),
     );

@@ -14,17 +14,25 @@ class FilmWatchingPreview extends StatelessWidget {
     FilmRelease original =
         filmWatching.releasesWatched.keys.firstWhere((FilmRelease filmRelease) => filmRelease.original);
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5),
-      child: Column(children: [
-        Text(
-          original.title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: 15),
+      child: Padding(
+        padding: EdgeInsets.all(
+          15,
         ),
-        Text(DateFormat.yMd('hu').format(original.premier)),
-      ]),
+        child: Column(
+          children: [
+            Text(
+              original.title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            ),
+            Text(
+              DateFormat.yMd('hu').format(original.premier),
+              style: TextStyle(fontSize: 18),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

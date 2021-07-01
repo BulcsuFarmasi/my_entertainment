@@ -20,14 +20,21 @@ class BookGroupPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(readingStateTranslations[readingState]!),
       ),
-      body: Column(
-          children: (bookGroup.books.isEmpty)
-              ? [Text(_textNoBooks)]
-              : bookGroup.books.map(
-                  (Book book) {
-                    return BookPreview(book: book, selectIsbn: selectIsbn);
-                  },
-                ).toList()),
+      body: (bookGroup.books.isEmpty)
+          ? Container(
+              width: double.infinity,
+              child: Text(
+                _textNoBooks,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            )
+          : Column(
+              children: bookGroup.books.map(
+              (Book book) {
+                return BookPreview(book: book, selectIsbn: selectIsbn);
+              },
+            ).toList()),
     );
   }
 
