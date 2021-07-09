@@ -21,7 +21,12 @@ class FilmsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ...filmWatchingByWatchingState.entries
-                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => FilmWatchingsPreview(entry, selectWatchingState))
+                  .map((MapEntry<FilmWatchingState, List<FilmWatching>> entry) => Container(
+                      width: 350,
+                      child: Card(
+                        child: Padding(
+                            padding: EdgeInsets.all(10), child: FilmWatchingsPreview(entry, selectWatchingState)),
+                      )))
                   .toList()
             ],
           )),

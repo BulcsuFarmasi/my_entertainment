@@ -19,30 +19,30 @@ class FilmWatchingsPage extends StatelessWidget {
             filmWatchingStateTranslations[filmWatchingState]!,
           ),
         ),
-        body: (filmWatchings.isEmpty)
-            ? Container(
-                width: double.infinity,
-                child: Text(
-                  _textNoFilms,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              )
-            : Column(
-                children: filmWatchings
-                    .map((FilmWatching filmWatching) => GestureDetector(
-                        onTap: () => selectFilmWatching(filmWatching.filmId),
-                        child: Container(
-                          width: 350,
-                          child: Card(
-                            child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child: FilmWatchingPreview(filmWatching),
-                            ),
-                          ),
-                        )))
-                    .toList(),
-              ));
+        body: Container(
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 15),
+            child: (filmWatchings.isEmpty)
+                ? Text(
+                    _textNoFilms,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  )
+                : Column(
+                    children: filmWatchings
+                        .map((FilmWatching filmWatching) => GestureDetector(
+                            onTap: () => selectFilmWatching(filmWatching.filmId),
+                            child: Container(
+                              width: 350,
+                              child: Card(
+                                child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: FilmWatchingPreview(filmWatching),
+                                ),
+                              ),
+                            )))
+                        .toList(),
+                  )));
   }
 
   final String _textNoFilms = Intl.message('Ebben a kategóriában most nincs film');

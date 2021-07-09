@@ -23,6 +23,7 @@ class BookGroupPage extends StatelessWidget {
       body: (bookGroup.books.isEmpty)
           ? Container(
               width: double.infinity,
+              padding: EdgeInsets.only(top: 15),
               child: Text(
                 _textNoBooks,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

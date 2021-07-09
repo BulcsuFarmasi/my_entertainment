@@ -25,6 +25,7 @@ class FilmWatchingPreview extends StatelessWidget {
             Text(
               original.title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              textAlign: TextAlign.center,
             ),
             Text(
               DateFormat.yMd('hu').format(original.premier),
