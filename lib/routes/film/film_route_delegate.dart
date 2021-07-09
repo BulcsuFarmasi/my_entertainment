@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_entertainment/features/film/pages/new_film_page.dart';
 
 import '../../features/film/pages/film_watchings_page.dart';
 import '../../features/film/pages/film_details_page.dart';
@@ -20,7 +21,11 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
         MaterialPage(
             child: FilmDetailsPage(
           state.selectedWatching!,
-        ))
+        )),
+      if (state.adding)
+        MaterialPage(
+          child: NewFilmPage(),
+        )
     ];
   }
 
@@ -45,6 +50,11 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
       notifyListeners();
       return true;
     }
+    if (state.adding) {
+      state.setAdding(false);
+      notifyListeners();
+      return true;
+    }
     return false;
   }
 
@@ -54,6 +64,9 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
     }
     if (state.selectedWatching != null) {
       return FilmRoutePath.watching(state.selectedWatching?.filmId);
+    }
+    if (state.adding) {
+      return FilmRoutePath.adding();
     }
     return FilmRoutePath();
   }
@@ -66,6 +79,9 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
     if (configuration.selectedFilmId != null) {
       state.selectWatching(state.watchings
           .firstWhere((FilmWatching filmWatching) => filmWatching.filmId == configuration.selectedFilmId));
+    }
+    if (configuration.adding) {
+      state.setAdding(true);
     }
   }
 
