@@ -4,10 +4,11 @@ import '../../../models/film_watching.dart';
 import '../widgets/film_watchings_preview.dart';
 
 class FilmsPage extends StatelessWidget {
-  FilmsPage(this.filmWatchingByWatchingState, this.selectWatchingState);
+  FilmsPage(this.filmWatchingByWatchingState, this.selectWatchingState, this.addFilm);
 
   final Map<FilmWatchingState, List<FilmWatching>> filmWatchingByWatchingState;
   final Function selectWatchingState;
+  final Function addFilm;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,15 @@ class FilmsPage extends StatelessWidget {
                         child: Padding(
                             padding: EdgeInsets.all(10), child: FilmWatchingsPreview(entry, selectWatchingState)),
                       )))
-                  .toList()
+                  .toList(),
+              FloatingActionButton(
+                  child: Icon(
+                    Icons.add,
+                    size: 38,
+                  ),
+                  onPressed: () {
+                    addFilm(true);
+                  }),
             ],
           )),
     );

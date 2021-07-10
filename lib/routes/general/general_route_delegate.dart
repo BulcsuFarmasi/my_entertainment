@@ -108,7 +108,7 @@ class GeneralRouteDelegate extends RouterDelegate<GeneralRoutePath>
           MaterialPage(
             key: ValueKey('FilmsPage'),
             child: FilmsPage((routeDelegates[film]!.state as FilmState).filmWatchingByWatchingState,
-                (routeDelegates[film]! as FilmRouteDelegate).selectWatchingState),
+                (routeDelegates[film]! as FilmRouteDelegate).selectWatchingState, (routeDelegates[film]! as FilmRouteDelegate).state.setAdding),
           ),
         if (selectedRoute == series) MaterialPage(key: ValueKey('SeriesPage'), child: SeriesPage()),
         for (SubRouteDelegate routeDelegate in routeDelegates.values) ...routeDelegate.build(context),
