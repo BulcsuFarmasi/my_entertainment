@@ -95,5 +95,10 @@ class FilmRouteDelegate extends SubRouteDelegate<FilmRoutePath> {
     notifyListeners();
   }
 
+  void setAdding(bool newAdding) {
+    state.setAdding(newAdding);
+    notifyListeners();
+  }
+
   FilmState state = FilmState();
 }
