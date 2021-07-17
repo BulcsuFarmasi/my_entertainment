@@ -15,16 +15,13 @@ class FilmState extends GeneralState {
     FilmRelease(
         id: 1,
         premier: DateTime(2021, 3, 18),
-        localPremier: DateTime(2021, 3, 18),
-        title: 'Zack Synder\'s Justice Leage',
-        localTitle: 'Zack Synder: Az igazság ligája',
+        title: 'Zack Synder: Az igazság ligája',
         language: languages['hu-HU']!),
     FilmRelease(id: 2, premier: DateTime(2020, 11, 10), title: 'Soul', language: languages['en-US']!, original: true),
     FilmRelease(
       id: 2,
       premier: DateTime(2021, 06, 03),
-      title: 'Soul',
-      localTitle: 'Lelki ismeretek',
+      title: 'Lelki ismeretek',
       language: languages['hu-HU']!,
     ),
     FilmRelease(
@@ -36,8 +33,7 @@ class FilmState extends GeneralState {
     FilmRelease(
       id: 3,
       premier: DateTime(2022, 06, 30),
-      title: 'Minions: The Rise of Gru',
-      localTitle: 'Minyonok: Gru színre lép',
+      title: 'Minyonok: Gru színre lép',
       language: languages['hu-HU']!,
     ),
   ];

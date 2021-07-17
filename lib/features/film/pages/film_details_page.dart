@@ -33,8 +33,8 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(release.localTitle!),
-                Text(DateFormat.yMd('hu').format(release.localPremier!)),
+                Text(release.title),
+                Text(DateFormat.yMd('hu').format(release.premier)),
                 Checkbox(
                     value: watched,
                     onChanged: (newWatched) {

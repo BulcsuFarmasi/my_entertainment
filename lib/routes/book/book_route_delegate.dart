@@ -76,7 +76,6 @@ class BookRouteDelegate extends SubRouteDelegate<BookRoutePath> {
 
   void selectReadingState(ReadingState readingState) {
     state.selectReadingState(readingState);
-    print(state.selectedReadingState);
     notifyListeners();
   }
 

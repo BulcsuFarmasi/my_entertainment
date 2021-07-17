@@ -26,7 +26,6 @@ class GeneralRouteInformationParser extends RouteInformationParser<GeneralRouteP
     }
     routeInformationParsers.forEach((RouteInformationParser routeInformationParser) async {
       GeneralRoutePath? routePath = await routeInformationParser.parseRouteInformation(routeInformation);
-      print(routePath);
       if (routePath != null) {
         return Future.value(routePath);
       }
@@ -36,7 +35,6 @@ class GeneralRouteInformationParser extends RouteInformationParser<GeneralRouteP
 
   @override
   RouteInformation? restoreRouteInformation(GeneralRoutePath configuration) {
-    print(configuration.runtimeType);
     if (configuration.isHome) {
       return RouteInformation(location: '/');
     }
@@ -49,11 +47,6 @@ class GeneralRouteInformationParser extends RouteInformationParser<GeneralRouteP
     if (configuration.isSeries) {
       return RouteInformation(location: '/series');
     }
-
-    print(configuration.isHome);
-    print(configuration.isBooks);
-    print(configuration.isFilms);
-    print(configuration.isSeries);
 
     for (RouteInformationParser routeInformationParser in routeInformationParsers) {
       RouteInformation? routeInformation = routeInformationParser.restoreRouteInformation(configuration);
