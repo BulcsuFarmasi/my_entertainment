@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../models/language.dart';
 
+import '../../../models/language.dart';
 import '../../../shared/widgets/language_selector.dart';
+import '../widgets/edit_film_release.dart';
 
 class NewFilmPage extends StatefulWidget {
   @override
@@ -10,7 +11,6 @@ class NewFilmPage extends StatefulWidget {
 }
 
 class _NewFilmPageState extends State<NewFilmPage> {
-
   void languageChanged(Language language) {
     print(language.code);
     print(language.endonym);
@@ -22,8 +22,8 @@ class _NewFilmPageState extends State<NewFilmPage> {
       appBar: AppBar(
         title: Text(newFilm),
       ),
-      body: Center(
-        child: LanguageSelector(languageChanged),
+      body: Column(
+        children: [LanguageSelector(languageChanged), EditFilmRelease()],
       ),
     );
   }

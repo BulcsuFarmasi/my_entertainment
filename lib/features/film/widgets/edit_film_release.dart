@@ -10,15 +10,20 @@ class EditFilmRelease extends StatefulWidget {
 class _EditFilmReleaseState extends State<EditFilmRelease> {
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      TextField(decoration: InputDecoration(labelText: textTitle),),
-      TextField(decoration: InputDecoration(labelText: textPremier),),
-      LanguageSelector(() {}),
-      Checkbox(value: true, onChanged: (_) {});
-    ],);
+    return Column(
+        children: [
+          TextField(
+            decoration: InputDecoration(labelText: textTitle),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: textPremier),
+          ),
+          LanguageSelector(() {}),
+          Checkbox(value: true, onChanged: (_) {}),
+        ],
+      );
   }
 
   static String textTitle = Intl.message('Cím');
   static String textPremier = Intl.message('Premier');
-
 }
