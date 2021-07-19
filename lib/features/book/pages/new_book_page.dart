@@ -12,7 +12,7 @@ class NewBookPage extends StatefulWidget {
   final Function addBook;
 
   @override
-  State<StatefulWidget> createState() {
+  _NewBookPageState createState() {
     return _NewBookPageState();
   }
 }
