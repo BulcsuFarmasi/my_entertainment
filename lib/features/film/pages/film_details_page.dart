@@ -35,6 +35,8 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
               children: [
                 Text(release.title),
                 Text(DateFormat.yMd('hu').format(release.premier)),
+                Text(textIsOriginal),
+                Checkbox(value: release.original, onChanged: null),
                 Checkbox(
                     value: watched,
                     onChanged: (newWatched) {
@@ -78,4 +80,6 @@ class _FilmDetailPageState extends State<FilmDetailsPage> {
       ]),
     );
   }
+
+  static String textIsOriginal = Intl.message('Eredeti?');
 }

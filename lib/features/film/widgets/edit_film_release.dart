@@ -19,11 +19,12 @@ class _EditFilmReleaseState extends State<EditFilmRelease> {
             decoration: InputDecoration(labelText: textPremier),
           ),
           LanguageSelector(() {}),
-          Checkbox(value: true, onChanged: (_) {}),
+          CheckboxListTile(value: true, onChanged: (_) {}, title: Text(textIsOriginal),),
         ],
       );
   }
 
   static String textTitle = Intl.message('Cím');
   static String textPremier = Intl.message('Premier');
+  static String textIsOriginal = Intl.message('Eredeti?');
 }
